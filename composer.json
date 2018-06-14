@@ -1,5 +1,17 @@
 {
-    "require": {
-        "codeception/codeception": "^2.4"
+  "name": "vendor_name/package_name",
+  "description": "codeception for PhpStorm",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Tadas",
+      "email": "machonis7@gmail.com"
     }
+  ],
+  "autoload": {
+    "psr-4": {
+      "app\\" : "app/"
+    }
+  }
 }
