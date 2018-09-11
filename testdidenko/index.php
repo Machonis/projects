@@ -8,69 +8,52 @@
         <!-- Bootstrap -->
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/font-awesome.css" rel="stylesheet">
+        <link href="css/mystyle.css" rel="stylesheet">
         <link href="js/bootstrap.js" rel="stylesheet">
 </head>
 <body>
     <?php
-$arr =  [
-        'text'    => "Test1",
-        'cells'   => '2,5,8',
-        'align'   => 'right',
-        'valign'  => 'top',
-        'color'   => 'red',
-        'bgcolor' => 'blue'
-        ];
-
-    $size =3;
-    $iterator=1;
-?>
-
-   <div class=" container-fluid">
-    <div class=" row">
-        <div class=" col-lg-<?php echo$size?>">
-            <table class="table table-bordered">
-                <?php for($i=0;$i<$size;$i++)
-                        {?>
-    <tr>
-        <?php  for($j=0;$j<$size;$j++,$iterator++){ ?>
-            <td
-                style="
-                        width: 100px;
-                        height: 100px;
-                        text-align: center;
-                        vertical-align: middle;
-                        ">
-                <?php echo $iterator;?></td>
-        <?php }?>
-    </tr>
-    <?php  }?>
-    </table>
-    </div>
-    </div>
-    </div>
-
-    <?php function getTable(array $arr){
+$arr =  array(
+            array(
+                'text'    => "Test1",
+                'cells'   => '1,2,4,5',
+                'align'   => 'right',
+                'valign'  => 'top',
+                'color'   => 'red',
+                'bgcolor' => 'blue'
+                ),
+            array(
+                'text'    => "Test2",
+                'cells'   => '6,9',
+                'align'   => 'center',
+                'valign'  => 'middle',
+                'color'   => 'blue',
+                'bgcolor' => 'red'
+                ),
+    );
+    function getTable(array $arr){
     // Создаю массив из номеров ячеек  которые ввел пользователь в массивв $arr под 
     // ключем cells и тутже его сортирую в порядке возрастания 
-        /*for($i = 0;$i < count($arr);$i++)
-        {*/
+        for($i = 0;$i < count($arr);$i++)
+        {
             $delimiter =',';
-            $arr_cells = explode($delimiter, $arr ['cells']);
-        //}
+            $arr_cells[] = explode($delimiter, $arr[$i]['cells']);
+            sort($arr_cells[$i]);
+        }
 // КОНЕЦ Создания массива из номеров, которые ввел пользователь
         $size =3; // Размер Таблицы = $size*$size.
                  //МОЖНО выбирать любой размер матрицы.
                 
         static $k=1;
 //Под каждый элемент создаю отдельный массив
-        $colspan = [];
-        $rowspan = [];
-        $width   = [];
-        $height  = [];
-        $class   = [];
-        $color   = [];
-        $bgcolor = [];
-        $text    = [];
+        $colspan = array();
+        $rowspan = array();
+        $width   = array();
+        $height  = array();
+        $class   = array();
+        $color   = array();
+        $bgcolor = array();
+        $text    = array();
 //Заполняю тадлицу данными по умолчанию
     for($i=1; $i <= $size*$size; $i++)
     {
@@ -81,66 +64,18 @@ $arr =  [
         $text[] = $i;
     }
 //Основной код программы
-    $arrAll =[];
 
-    for ($i = 1; $i <= $size*$size; $i++) {
-        $arrAll[$i] = "$i";
-    }
-
-    sort($arr_cells);
-
-    for ($i = 1; $i <= $size; $i++) {
-        if ($i -1 <= intdiv(max($arr_cells) - min($arr_cells), $size) && intdiv($a = max($arr_cells) - $b = min($arr_cells), $size) <= $i ) {
-            $rowCount = $i;
-        }
-    }
-
-    $arrRowsCell = [];
-    $iterator = 1;
-
-    for ($i = 1; $i <= $size; $i++) {
-        for ($j = 1; $j <= $size; $j++) {
-            if (in_array($arrAll[$iterator], $arr_cells)) {
-                $arrRowsCell[$i][] = $arrAll[$iterator];
-            }
-            $iterator++;
-        }
-    }
-
-       if ($rowCount != 1) {
-                   for ($i = 1; $i <= $rowCount - 1; $i++) {
-                           if (min($arrRowsCell[$i]) != min($arrRowsCell[$i+1]) - $size && max($arrRowsCell[$i]) != max($arrRowsCell[$i+1]) - $size) {
-                               echo 'Bad!';
-                           }
-                           if ($i == $rowCount - 1) {
-                               for ($j = 1; $j <= $rowCount - 1; $j++) {
-                                   if (count($arrRowsCell[$j]) != count($arrRowsCell[$j + 1])) {
-                                       echo 'Bad!';
-                                   }
-                               }
-                           }
-                   }
-       } else {
-           for ($j = min($arr_cells); $j <= max($arr_cells); $j++) {
-               if (in_array($arrAll[$j], $arr_cells) == false) {
-                   echo 'Bad!';
-               }
-           }
-       }
-
-       echo 'ALL right';
-
-    for($i=0;$i<count($arr_cells); $i++) {
+    for($i=0;$i<count($arr_cells); $i++)
+    {
         //запоминая для каждой группы ячеек нужные данные
-        $color[$arr_cells[$i]-1]   = $arr['color'];
-        $bgcolor[$arr_cells[$i]-1] = $arr['bgcolor'];
-        $text[$arr_cells[$i]-1]    = $arr['text'];
-        $align[$arr_cells[$i]-1]   = $arr['align'];
-        $valign[$arr_cells[$i]-1]  = $arr['valign'];
+        $color[$arr_cells[$i][0]-1]   = $arr[$i]['color'];
+        $bgcolor[$arr_cells[$i][0]-1] = $arr[$i]['bgcolor'];
+        $text[$arr_cells[$i][0]-1]    = $arr[$i]['text'];
+        $align[$arr_cells[$i][0]-1]   = $arr[$i]['align'];
+        $valign[$arr_cells[$i][0]-1]  = $arr[$i]['valign'];
 
-        $count = count($arr_cells);
-        $row = 1;
-
+        $count =count($arr_cells[$i]);
+        $row=1;
         for($s= $count-2 ,$j=1;$j<$count,$s >= 0; $j++, $s--)
         {
             $class[$arr_cells[$i][$j]-1] = 'hidden';// для ненужных мне ячеек присваиваю класс
