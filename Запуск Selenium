@@ -1,0 +1,2 @@
+java -jar "/path/to/selenium-server-standalone-xxx.jar"
+-Dwebdriver.chrome.driver=./chromedriver

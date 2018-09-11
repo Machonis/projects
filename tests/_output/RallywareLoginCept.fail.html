@@ -1,0 +1,612 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en" class=""><head><style class="vjs-styles-defaults">
+      .video-js {
+        width: 300px;
+        height: 150px;
+      }
+
+      .vjs-fluid {
+        padding-top: 56.25%
+      }
+    </style>
+        <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <link href="http://localhost:8080/static/img/favicon.png" type="image/x-icon" rel="shortcut icon" />
+
+    <script>
+        window.locale = "en";
+    </script>
+
+            <link href="http://localhost:8080/static/dev/assets/dev/vendor/bootstrap/css/bootstrap.min.css?dev" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="http://localhost:8080/static/dev/assets/dev/vendor/font-awesome/css/font-awesome.min.css?dev" />
+    <link rel="stylesheet" href="http://localhost:8080/static/dev/assets/dev/bundles/corecommon/styles/fonts.bundle.css?dev" />
+    <link rel="stylesheet" href="http://localhost:8080/static/dev/assets/dev/bundles/corecommon/styles/vendor.bundle.css?dev" />
+    <link rel="stylesheet" href="http://localhost:8080/static/dev/assets/dev/bundles/badge/styles/client/badge.bundle.css?dev" />
+    <link rel="stylesheet" href="http://localhost:8080/static/dev/assets/dev/bundles/corecommon/styles/common.bundle.css?dev" />
+
+    <script src="http://localhost:8080/static/dev/assets/dev/bundles/fosjsrouting/js/router.js?dev"></script>
+    <script src="/js/routing?callback=fos.Router.setData"></script>
+    <script src="http://localhost:8080/static/dev/assets/dev/bundles/bazingajstranslation/js/translator.min.js?dev"></script>
+    <script src="http://localhost:8080/public/translations?locales=en&amp;v=dev"></script>
+
+    <link rel="stylesheet" href="http://localhost:8080/static/dev/assets/dev/vendor/bootstrap/css/bootstrap.min.css?dev" />
+    <link rel="stylesheet" href="http://localhost:8080/static/dev/assets/dev/bundles/coresecurity/styles/security.bundle.css?dev" />
+    <link rel="stylesheet" href="http://localhost:8080/static/dev/assets/dev/bundles/signup/styles/sign-up.bundle.css?dev" />
+    <title>
+         Rallyware
+    </title>
+<style>[data-columns]::before{display:block;visibility:hidden;position:absolute;font-size:1px;}</style><style type="text/css">.fancybox-margin{margin-right:15px;}</style><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_reposition{overflow:hidden;position:relative}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset&gt;div{overflow:hidden}.fb_link img{border:none}@keyframes fb_transform{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.fb_animate{animation:fb_transform .3s forwards}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_reset .fb_dialog_legacy{overflow:visible}.fb_dialog_advanced{padding:10px;border-radius:8px}.fb_dialog_content{background:#fff;color:#333}.fb_dialog_close_icon{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent}.fb_dialog_close_icon:active{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent}.fb_dialog_loader{background-color:#f6f7f9;border:1px solid #606060;font-size:24px;padding:20px}.fb_dialog_top_left,.fb_dialog_top_right,.fb_dialog_bottom_left,.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}.fb_dialog_top_left{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}.fb_dialog_top_right{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}.fb_dialog_bottom_left{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}.fb_dialog_bottom_right{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}.fb_dialog_vert_left,.fb_dialog_vert_right,.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}.fb_dialog_vert_left,.fb_dialog_vert_right{width:10px;height:100%}.fb_dialog_vert_left{margin-left:-10px}.fb_dialog_vert_right{right:0;margin-right:-10px}.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{width:100%;height:10px}.fb_dialog_horiz_top{margin-top:-10px}.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #365899;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title&gt;span{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{-webkit-transform:none;height:100%;margin:0;overflow:visible;position:absolute;top:-10000px;left:0;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{width:auto;height:auto;min-height:initial;min-width:initial;background:none}.fb_dialog.fb_dialog_mobile.loading.centered #fb_dialog_loader_spinner{width:100%}.fb_dialog.fb_dialog_mobile.loading.centered .fb_dialog_content{background:none}.loading.centered #fb_dialog_loader_close{color:#fff;display:block;padding-top:20px;clear:both;font-size:18px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;bottom:0;left:0;right:0;top:0;width:100%;min-height:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_mobile .fb_dialog_iframe{position:-webkit-sticky;top:0}.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#4966A6), color-stop(.5, #355492), to(#2A4887));border:1px solid #29487d;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset, rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f6f7f9;border:1px solid #555;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}#fb_dialog_loader_spinner{animation:rotateSpinner 1.2s linear infinite;background-color:transparent;background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/t-wz8gw1xG1.png);background-repeat:no-repeat;background-position:50% 50%;height:24px;width:24px}@keyframes rotateSpinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_hide_iframes iframe{position:relative;left:-10000px}.fb_iframe_widget_loader{position:relative;display:inline-block}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}.fb_iframe_widget_loader .FB_Loader{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}
+.fb_customer_chat_bounce_in_v1{animation-duration:250ms;animation-name:fb_bounce_in_v1}.fb_customer_chat_bounce_out_v1{animation-duration:250ms;animation-name:fb_bounce_out_v1}.fb_customer_chat_bounce_in_v2{animation-duration:300ms;animation-name:fb_bounce_in_v2;transition-timing-function:ease-in}.fb_customer_chat_bounce_out_v2{animation-duration:300ms;animation-name:fb_bounce_out_v2;transition-timing-function:ease-in}.fb_customer_chat_bounce_in_v2_mobile_chat_started{animation-duration:300ms;animation-name:fb_bounce_in_v2_mobile_chat_started;transition-timing-function:ease-in}.fb_customer_chat_bounce_out_v2_mobile_chat_started{animation-duration:300ms;animation-name:fb_bounce_out_v2_mobile_chat_started;transition-timing-function:ease-in}.fb_customer_chat_bubble_pop_in{animation-duration:250ms;animation-name:fb_customer_chat_bubble_bounce_in_animation}.fb_customer_chat_bubble_animated_no_badge{box-shadow:0 3px 12px rgba(0, 0, 0, .15);transition:box-shadow 150ms linear}.fb_customer_chat_bubble_animated_no_badge:hover{box-shadow:0 5px 24px rgba(0, 0, 0, .3)}.fb_customer_chat_bubble_animated_with_badge{box-shadow:-5px 4px 14px rgba(0, 0, 0, .15);transition:box-shadow 150ms linear}.fb_customer_chat_bubble_animated_with_badge:hover{box-shadow:-5px 8px 24px rgba(0, 0, 0, .2)}.fb_invisible_flow{display:inherit;height:0;overflow-x:hidden;width:0}.fb_mobile_overlay_active{background-color:#fff;height:100%;overflow:hidden;position:fixed;visibility:hidden;width:100%}@keyframes fb_bounce_in_v1{0%{opacity:0;transform:scale(.8, .8);transform-origin:bottom right}80%{opacity:.8;transform:scale(1.03, 1.03)}100%{opacity:1;transform:scale(1, 1)}}@keyframes fb_bounce_in_v2{0%{opacity:0;transform:scale(0, 0);transform-origin:bottom right}50%{transform:scale(1.03, 1.03);transform-origin:bottom right}100%{opacity:1;transform:scale(1, 1);transform-origin:bottom right}}@keyframes fb_bounce_in_v2_mobile_chat_started{0%{opacity:0;top:20px}100%{opacity:1;top:0}}@keyframes fb_bounce_out_v1{from{opacity:1}to{opacity:0}}@keyframes fb_bounce_out_v2{0%{opacity:1;transform:scale(1, 1);transform-origin:bottom right}100%{opacity:0;transform:scale(0, 0);transform-origin:bottom right}}@keyframes fb_bounce_out_v2_mobile_chat_started{0%{opacity:1;top:0}100%{opacity:0;top:20px}}@keyframes fb_customer_chat_bubble_bounce_in_animation{0%{bottom:6pt;opacity:0;transform:scale(0, 0);transform-origin:center}70%{bottom:18pt;opacity:1;transform:scale(1.2, 1.2)}100%{transform:scale(1, 1)}}</style></head>
+
+<body>
+<div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div></div></div></div>
+
+
+<div class="flat-layout__bg" style="background-image: url('http://localhost:8080/static/img/page-header-default.png')"></div>
+<div class="flat-layout__overlay"></div>
+
+<div class="flat-layout__holder">
+    <div class="flat-layout__wrapper col-xs-10 col-xs-push-1 col-sm-10 col-sm-push-1 col-md-10 col-md-push-1 col-lg-8 col-lg-push-2">
+        <header class="flat-layout__header">
+            <div class="header-logo__holder">
+                <a class="header-logo__link" href="/">
+                    <img class="header-logo__image" src="http://localhost:8080/static/img/logo-main.png" alt="Rallyware" />
+                </a>
+                    
+            </div>
+        </header>
+
+        <div class="flat-layout__main-container">
+            
+<div class="flat-login-wrapper content-container">
+    <div class="flat-login__form-container">
+        <div class="login-form-container-holder">
+
+            <ul class="login-tabs__container">
+                <li class="login-tabs__label">
+                    <a href="/login">Sign in</a>
+                </li>
+                <li class="login-tabs__label login-tabs__label--active">
+                    <span>Register</span>
+                </li>
+            </ul>                <div class="login-social__wrapper">
+                    <div class="login-social__social-title">Register with your social account</div>
+
+                    <div class="login-social__social-links-holder"><button class="form-button social-button form-button--with-icon form-button--icon-left google" data-provider="google" data-app-id="86464571401-jeeboavshi0nnbvbkh52lep111r3tc2d" data-route="ext_google_login_check">
+                        Google
+                    </button><button class="form-button social-button form-button--with-icon form-button--icon-left facebook" data-provider="facebook" data-app-id="1247095665356931" data-route="ext_facebook_login_check">
+                        Facebook
+                    </button></div>
+                </div>
+            
+            <form name="sign_up" method="post">
+            
+                                                                        <div class="fields-group form-field-container&#10;                           "><label for="sign_up_firstName" class="required form-label">
+                First name
+            </label><input type="text" id="sign_up_firstName" name="sign_up[firstName]" required="required" placeholder="First name" /></div>
+                                                                                                            <div class="fields-group form-field-container&#10;                           "><label for="sign_up_lastName" class="required form-label">
+                Last name
+            </label><input type="text" id="sign_up_lastName" name="sign_up[lastName]" required="required" placeholder="Last name" /></div>
+                                                                                                            <div class="fields-group form-field-container&#10;                           "><label for="sign_up_plainTextPassword_first" class="required form-label">
+                Password
+            </label><input type="password" id="sign_up_plainTextPassword_first" name="sign_up[plainTextPassword][first]" required="required" placeholder="Password" /></div><div class="fields-group form-field-container&#10;                           "><label for="sign_up_plainTextPassword_second" class="required form-label">
+                Confirm password
+            </label><input type="password" id="sign_up_plainTextPassword_second" name="sign_up[plainTextPassword][second]" required="required" placeholder="Confirm password" /></div>
+                                                                                                            <div class="fields-group form-field-container&#10;                           "><label for="sign_up_email" class="required form-label">
+                Email
+            </label><input type="email" id="sign_up_email" name="sign_up[email]" required="required" placeholder="Email" /></div>
+                                                                                                            <div class="fields-group form-field-container&#10;          country-select                   "><label for="sign_up_country-selectized" class="required form-label">
+                Country
+            </label><div class="select-container">
+        <select id="sign_up_country" name="sign_up[country]" tabindex="-1" class="selectized" style="display: none;"><option value="US" selected="selected">United States</option></select><div class="selectize-control single"><div class="selectize-input items full has-options has-items"><div class="item" data-value="US">United States</div><input type="text" autocomplete="off" tabindex="" id="sign_up_country-selectized" style="width: 4px;" /></div><div class="selectize-dropdown single" style="display: none;"><div class="selectize-dropdown-content"></div></div></div>
+    </div></div>
+                                                                                                            <div class="fields-group form-field-container&#10;                           "><label for="sign_up_address" class="required form-label">
+                Address
+            </label><input type="text" id="sign_up_address" name="sign_up[address]" required="required" placeholder="Address" /></div>
+                                                                                    <h2 class="rules__title">Rules and Regulations</h2>
+                    <ul class="rules__list">
+                        <li>The following content is strictly forbidden on this system. Posting or messaging prohibited content is grounds for immediate termination of a user’s account.</li>
+                        <li>Lewd, profane, aggressive, violent or threatening language, especially motivated by the race, ethnicity, national origin, religion, sex, gender, sexual orientation, disability or medical condition of another.</li>
+                    </ul>
+
+                    <h2 class="rules__title">Reporting Abuse</h2>
+                    <ul class="rules__list">
+                        <li>If you see something on this system that you believe violates these terms, please report it to us. Please keep in mind that reporting content does not guarantee that it will be removed from the site.</li>
+                    </ul>
+                    
+                    <div class="rules__custom-checkbox">
+                        <label class="custom-checkbox__label form-label">
+                            <input type="checkbox" id="sign_up_isRulesAgreed" name="sign_up[isRulesAgreed]" required="required" value="1" />
+                            <span class="custom-checkbox__text">
+                                I have read and agree to the above Rules and Regulations, <a href="/site/page?view=privacy_policy" target="_blank">Privacy Policy</a>, and <a href="/site/page?view=terms_of_service" target="_blank">Terms of Service</a>
+                            </span>
+                        </label>
+                    </div>
+                                                                                        <div class="buttons-group"><button type="submit" id="sign_up_sign-up" name="sign_up[sign-up]">sign up</button></div>
+                                                                                                            <input type="hidden" id="sign_up_providerId" name="sign_up[providerId]" />
+                                                                                                            <input type="hidden" id="sign_up_providerToken" name="sign_up[providerToken]" />
+                                                                                                            <input type="hidden" id="sign_up__token" name="sign_up[_token]" value="c3g4tsBIShAXqxg8HNRU3wmAOIXxxKhrHVlS0MSVU1o" />
+                                                
+                        </form>
+
+        </div>
+    </div>
+</div>
+
+        </div>
+    </div>
+
+    <footer class="flat-layout__footer col-xs-11 col-xs-push-1 col-sm-11 col-sm-push-1 col-md-11 col-md-push-1 col-lg-10 col-lg-push-2">
+        <div class="footer__info">
+            <p class="footer__copyright">
+                ©2018 Rallyware.
+                Powered by <a href="http://rallyware.com/" target="_blank">Rallyware</a>.
+            </p>
+            <ul class="list-inline footer__rules-regulations">
+                <li>
+                    <a href="/site/page?view=privacy_policy">Privacy Policy</a>
+                </li>
+                <li>
+                    <a href="/site/page?view=terms_of_service">Terms of Service</a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="//js.pusher.com/4.0/pusher.min.js"></script>
+
+        <script src="http://localhost:8080/static/dev/assets/dev/vendor/jquery/jquery.min.js?dev"></script>
+    <script src="http://localhost:8080/static/dev/assets/dev/vendor/jquery-migrate/jquery-migrate.min.js?dev"></script>
+    <script src="http://localhost:8080/static/dev/assets/dev/bundles/corecommon/js/vendor.bundle.js?dev"></script>
+    <script src="http://localhost:8080/static/dev/assets/dev/bundles/corecommon/js/common.bundle.js?dev"></script>
+
+<script>
+    window.getParameter = function(key) {
+        var config = {
+            "pusher.app.key": '30a74d0c1f6420435399',
+            "pusher.channel": ''
+        };
+        if (!config.hasOwnProperty(key)) {
+            throw new Error('Parameter "' + key + '" was not found');
+        }
+        return config[key];
+    };
+    window.TINYMCE_OVERRIDE_STYLES = "http://localhost:8080/static/dev/assets/dev/bundles/corecommon/styles/information-block.bundle.css?dev";
+    window.TINYMCE_FONTS_STYLES = "http://localhost:8080/static/dev/assets/dev/bundles/corecommon/styles/fonts.bundle.css?dev";
+    window.TINYMCE_LANG_PATH = "http://localhost:8080/static/dev/assets/dev/bundles/corecommon/js/langs/en.js?dev";
+</script>
+<script src="http://localhost:8080/static/dev/assets/dev/bundles/corecommon/js/initialize.bundle.js?dev"></script>
+<script>
+    Application.add("data", "config", {
+        "app.appearance.brand.color.secondary": "#266EAB",
+        "app.appearance.brand.color.primary": "#c4d600",
+    });
+    Application.add("data", "defaultAvatar", "http://localhost:8080/static/img/user-avatar.png");
+    </script>
+</div>
+
+    <script src="http://localhost:8080/static/dev/assets/dev/bundles/signup/js/sign-up.bundle.js?dev"></script><script src="https://apis.google.com/js/platform.js" async="" defer="" gapi_processed="true"></script><script src="https://connect.facebook.net/en_EN/sdk.js" id="facebook-jssdk"></script>
+    
+
+<div id="sfwdtd69a02" class="sf-toolbar sf-display-none" data-sfurl="/_wdt/d69a02" style="display: block;"><!-- START of Symfony Web Debug Toolbar -->
+<div id="sfMiniToolbar-d69a02" class="sf-minitoolbar" data-no-turbolink="" style="display: none;">
+    <a href="#" title="Show Symfony toolbar" tabindex="-1" id="sfToolbarMiniToggler-d69a02" accesskey="D">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+<path fill="#AAAAAA" d="M12,0.9C5.8,0.9,0.9,5.8,0.9,12s5,11.1,11.1,11.1s11.1-5,11.1-11.1S18.2,0.9,12,0.9z M18.5,6.9&#10;    c-0.6,0-0.9-0.3-0.9-0.8c0-0.2,0-0.4,0.2-0.6c0.1-0.3,0.2-0.3,0.2-0.4c0-0.3-0.5-0.4-0.6-0.4c-1.8,0.1-2.3,2.5-2.7,4.4l-0.2,1&#10;    c1,0.2,1.8,0,2.2-0.3c0.6-0.4-0.2-0.7-0.1-1.2c0.1-0.3,0.5-0.5,0.7-0.6c0.5,0,0.7,0.5,0.7,0.9c0,0.7-1,1.8-3,1.8&#10;    c-0.3,0-0.5,0-0.6-0.1L13.8,13c-0.4,1.6-0.8,3.8-2.4,5.7c-1.4,1.7-2.9,1.9-3.5,1.9c-1.2,0-1.9-0.6-2-1.5c0-0.8,0.7-1.3,1.2-1.3&#10;    c0.6,0,1.1,0.5,1.1,1c0,0.5-0.2,0.6-0.4,0.6c-0.1,0.1-0.3,0.2-0.3,0.4c0,0.1,0.1,0.3,0.4,0.3c0.5,0,0.8-0.3,1.1-0.5&#10;    c1.2-0.9,1.6-2.7,2.2-5.7l0.1-0.7c0.2-1,0.5-2.1,0.7-3.2c-0.8-0.6-1.3-1.4-2.4-1.7C9,8.2,8.5,8.4,8.1,8.8c-0.4,0.5-0.2,1.1,0.2,1.5&#10;    L9,10.9c0.7,0.8,1.2,1.6,1,2.5C9.7,14.9,8,16,6,15.3c-1.8-0.6-2-1.8-1.8-2.5c0.2-0.6,0.6-0.7,1.1-0.6c0.5,0.2,0.6,0.7,0.6,1.2&#10;    c0,0.1,0,0.1-0.1,0.3c-0.2,0.1-0.3,0.3-0.3,0.4c-0.1,0.4,0.4,0.6,0.7,0.7c0.7,0.3,1.6-0.2,1.8-0.8c0.2-0.6-0.2-1-0.4-1.1l-0.7-0.8&#10;    c-0.4-0.4-1.1-1.4-0.7-2.6C6.3,9,6.6,8.6,6.9,8.2c0.9-0.6,1.8-0.7,2.8-0.6c1.2,0.4,1.8,1.1,2.6,1.8c0.5-1.2,1-2.4,1.8-3.5&#10;    C15,5,16,4.3,17.2,4.2c1.3,0.2,2.2,0.7,2.2,1.6C19.4,6.2,19.2,6.9,18.5,6.9z"/>
+</svg>
+
+    </a>
+</div>
+<div id="sfToolbarClearer-d69a02" class="sf-toolbar-clearer" style="display: block;"></div>
+
+<div id="sfToolbarMainContent-d69a02" class="sf-toolbarreset clear-fix" data-no-turbolink="" style="display: block;">
+                                                
+    
+    
+    
+    
+    
+    <div class="sf-toolbar-block sf-toolbar-block-request sf-toolbar-status-normal ">
+    <a href="/_profiler/d69a02?panel=request">        <div class="sf-toolbar-icon">        <span class="sf-toolbar-status sf-toolbar-status-green">200</span>
+                                            <span class="sf-toolbar-label"> @</span>
+            <span class="sf-toolbar-value sf-toolbar-info-piece-additional">ext_sign_up</span>
+            </div>
+    </a>        <div class="sf-toolbar-info">        <div class="sf-toolbar-info-group">
+            <div class="sf-toolbar-info-piece">
+                <b>HTTP status</b>
+                <span>200 OK</span>
+            </div>
+
+            
+            <div class="sf-toolbar-info-piece">
+                <b>Controller</b>
+                <span>            <a href="http://localhost:8080/_profiler/open?file=v3/src/Extension/SignUpBundle/Action/SignUpAction.php&amp;line=88#line88" title="/var/www/rallyware/v3/src/Extension/SignUpBundle/Action/SignUpAction.php">SignUpAction :: __invoke</a>
+    </span>
+            </div>
+
+            <div class="sf-toolbar-info-piece">
+                    <b>Controller class</b>
+                    <span>Extension\SignUpBundle\Action\SignUpAction</span>
+                </div>
+            <div class="sf-toolbar-info-piece">
+                <b>Route name</b>
+                <span>ext_sign_up</span>
+            </div>
+
+            <div class="sf-toolbar-info-piece">
+                <b>Has session</b>
+                <span>yes</span>
+            </div>
+        </div>
+
+        
+            </div>
+</div>
+
+
+                                                                        
+    
+    
+    <div class="sf-toolbar-block sf-toolbar-block-time sf-toolbar-status-yellow ">
+    <a href="/_profiler/d69a02?panel=time">        <div class="sf-toolbar-icon">        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+<path fill="#AAAAAA" d="M15.1,4.3c-2.1-0.5-4.2-0.5-6.2,0C8.6,4.3,8.2,4.1,8.2,3.8V3.4c0-1.2,1-2.3,2.3-2.3h3c1.2,0,2.3,1,2.3,2.3&#10;    v0.3C15.8,4.1,15.4,4.3,15.1,4.3z M20.9,14c0,4.9-4,8.9-8.9,8.9s-8.9-4-8.9-8.9s4-8.9,8.9-8.9S20.9,9.1,20.9,14z M16.7,15&#10;    c0-0.6-0.4-1-1-1H13V8.4c0-0.6-0.4-1-1-1s-1,0.4-1,1v6.2c0,0.6,0.4,1.3,1,1.3h3.7C16.2,16,16.7,15.6,16.7,15z"/>
+</svg>
+
+        <span class="sf-toolbar-value">1595</span>
+        <span class="sf-toolbar-label">ms</span>
+    </div>
+    </a>        <div class="sf-toolbar-info">        <div class="sf-toolbar-info-piece">
+            <b>Total time</b>
+            <span>1595 ms</span>
+        </div>
+        <div class="sf-toolbar-info-piece">
+            <b>Initialization time</b>
+            <span>1059 ms</span>
+        </div>
+    </div>
+</div>
+
+
+                                                                
+    
+    <div class="sf-toolbar-block sf-toolbar-block-time sf-toolbar-status-normal ">
+    <a href="/_profiler/d69a02?panel=time">        <div class="sf-toolbar-icon">                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+<path fill="#AAAAAA" d="M6,18.9V15h12v3.9c0,0.7-0.2,1.1-1,1.1H7C6.2,20,6,19.6,6,18.9z M20,1C20,1,20,1,20,1c-0.6,0-1,0.5-1,1.1&#10;    l0,18c0,0.5-0.4,0.9-0.9,0.9H5.9C5.4,21,5,20.6,5,20.1l0-18C5,1.5,4.6,1,4,1c0,0,0,0,0,0C3.5,1,3,1.5,3,2.1l0,18&#10;    C3,21.7,4.3,23,5.9,23h12.2c1.6,0,2.9-1.3,2.9-2.9l0-18C21,1.5,20.6,1,20,1z M18,9H6v5h12V9z"/>
+</svg>
+
+        <span class="sf-toolbar-value">2.0</span>
+        <span class="sf-toolbar-label">MB</span>
+    </div>
+    </a>        <div class="sf-toolbar-info">        <div class="sf-toolbar-info-piece">
+            <b>Peak memory usage</b>
+            <span>2.0 MB</span>
+        </div>
+
+        <div class="sf-toolbar-info-piece">
+            <b>PHP memory limit</b>
+            <span>256 MB</span>
+        </div>
+    </div>
+</div>
+
+
+                                                                
+    
+    <div class="sf-toolbar-block sf-toolbar-block-ajax sf-toolbar-status-normal" style="display: none;">
+            <div class="sf-toolbar-icon">        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+<path fill="#AAAAAA" d="M9.8,18l-3.8,4.4c-0.3,0.3-0.8,0.4-1.1,0L1,18c-0.4-0.5-0.1-1,0.5-1H3V6.4C3,3.8,5.5,2,8.2,2h3.9&#10;    c1.1,0,2,0.9,2,2s-0.9,2-2,2H8.2C7.7,6,7,6,7,6.4V17h2.2C9.8,17,10.2,17.5,9.8,18z M23,6l-3.8-4.5c-0.3-0.3-0.8-0.3-1.1,0L14.2,6&#10;    c-0.4,0.5-0.1,1,0.5,1H17v10.6c0,0.4-0.7,0.4-1.2,0.4h-3.9c-1.1,0-2,0.9-2,2s0.9,2,2,2h3.9c2.6,0,5.2-1.8,5.2-4.4V7h1.5&#10;    C23.1,7,23.4,6.5,23,6z"/>
+</svg>
+
+        <span class="sf-toolbar-value sf-toolbar-ajax-request-counter">0</span>
+    </div>
+            <div class="sf-toolbar-info">        <div class="sf-toolbar-info-piece">
+            <b class="sf-toolbar-ajax-info">0 AJAX requests</b>
+        </div>
+        <div class="sf-toolbar-info-piece">
+            <table class="sf-toolbar-ajax-requests">
+                <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                        <th>URL</th>
+                        <th>Time</th>
+                        <th>Profile</th>
+                    </tr>
+                </thead>
+                <tbody class="sf-toolbar-ajax-request-list"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+                                                                                
+        
+        <div class="sf-toolbar-block sf-toolbar-block-form sf-toolbar-status-normal ">
+    <a href="/_profiler/d69a02?panel=form">        <div class="sf-toolbar-icon">            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+    <path fill="#AAAAAA" d="M20.5,4H18V2.5C18,1.7,17.3,1,16.5,1h-9C6.7,1,6,1.7,6,2.5V4H3.5C2.7,4,2,4.7,2,5.5v16C2,22.3,2.7,23,3.5,&#10;    23h17c0.8,0,1.5-0.7,1.5-1.5v-16C22,4.7,21.3,4,20.5,4z M9,4h6v1H9V4z M19,20H5V7h1.1c0.2,0.6,0.8,1,1.4,1h9c0.7,0,1.2-0.4,1.4-1H19&#10;    V20z M17,11c0,0.6-0.4,1-1,1H8c-0.6,0-1-0.4-1-1s0.4-1,1-1h8C16.6,10,17,10.4,17,11z M17,14c0,0.6-0.4,1-1,1H8c-0.6,0-1-0.4-1-1&#10;    s0.4-1,1-1h8C16.6,13,17,13.4,17,14z M13,17c0,0.6-0.4,1-1,1H8c-0.6,0-1-0.4-1-1s0.4-1,1-1h4C12.6,16,13,16.4,13,17z"/>
+</svg>
+
+            <span class="sf-toolbar-value">
+                1
+            </span>
+        </div>
+    </a>        <div class="sf-toolbar-info">            <div class="sf-toolbar-info-piece">
+                <b>Number of forms</b>
+                <span class="sf-toolbar-status">1</span>
+            </div>
+            <div class="sf-toolbar-info-piece">
+                <b>Number of errors</b>
+                <span class="sf-toolbar-status sf-toolbar-status-">0</span>
+            </div>
+        </div>
+</div>
+
+    
+                                                                                    
+        
+        <div class="sf-toolbar-block sf-toolbar-block-logger sf-toolbar-status-yellow ">
+    <a href="/_profiler/d69a02?panel=logger">        <div class="sf-toolbar-icon">                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+<path fill="#AAAAAA" d="M21,4v13.8c0,2.7-2.5,5.2-5.2,5.2H6c-0.6,0-1-0.4-1-1s0.4-1,1-1h9.8c1.6,0,3.2-1.7,3.2-3.2V4&#10;    c0-0.6,0.4-1,1-1S21,3.4,21,4z M5.5,20C4.1,20,3,18.9,3,17.5V3.5C3,2.1,4.1,1,5.5,1h10.1C16.9,1,18,2.1,18,3.5v14.1&#10;    c0,1.4-1.1,2.5-2.5,2.5H5.5z M9,11.4C9,11.7,9.3,12,9.6,12h1.8c0.3,0,0.6-0.3,0.6-0.6V4.6C12,4.3,11.7,4,11.4,4H9.6&#10;    C9.3,4,9,4.3,9,4.6V11.4z M9,16.4C9,16.7,9.3,17,9.6,17h1.8c0.3,0,0.6-0.3,0.6-0.6v-1.8c0-0.3-0.3-0.6-0.6-0.6H9.6&#10;    C9.3,14,9,14.3,9,14.6V16.4z"/>
+</svg>
+
+            <span class="sf-toolbar-value">5</span>
+        </div>
+    </a>        <div class="sf-toolbar-info">            <div class="sf-toolbar-info-piece">
+                <b>Errors</b>
+                <span class="sf-toolbar-status sf-toolbar-status-">0</span>
+            </div>
+
+            <div class="sf-toolbar-info-piece">
+                <b>Warnings</b>
+                <span class="sf-toolbar-status sf-toolbar-status-">0</span>
+            </div>
+
+            <div class="sf-toolbar-info-piece">
+                <b>Deprecations</b>
+                <span class="sf-toolbar-status sf-toolbar-status-yellow">5</span>
+            </div>
+        </div>
+</div>
+
+    
+                                                                        
+                                                                
+                                                                        
+        
+        <div class="sf-toolbar-block sf-toolbar-block-translation sf-toolbar-status-normal ">
+    <a href="/_profiler/d69a02?panel=translation">        <div class="sf-toolbar-icon">            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+<path fill="#AAAAAA" d="M5.4,6H7v0.3c0,1.2-0.7,1.9-1.7,1.9c-1.1,0-1.4-0.4-1.4-1.1C3.9,6.2,4.5,6,5.4,6z M9.2,0H2.7&#10;    C1.2,0,0,0.9,0,2.4v6.5C0,10.4,1.2,11,2.7,11h1.2l3.3,3.2C7.6,14.4,8,14.5,8,14.1c0-1.4,0-2.8,0-4.2c0-0.4,0-0.7,0.1-1.1&#10;    c-0.1,0-0.3,0-0.4,0C7.4,8.9,7,8.7,7,8.4V7.9c0,0.7-1,1-1.8,1c-1.5,0-2.4-0.7-2.4-2c0-1.3,1.1-2,2.6-2H7V4.5c0-1-0.4-1.6-1.5-1.6&#10;    C4.8,2.9,4.4,3.1,4,3.6C3.8,3.8,3.8,3.8,3.7,3.8c-0.2,0-0.4-0.2-0.4-0.4c0-0.1,0-0.2,0.1-0.2C3.8,2.5,4.4,2,5.6,2C7.2,2,8,3,8,4.5v3&#10;    c1-1.4,1.8-2.4,4-2.4c0,0,0-1.9,0-2.7C12,0.9,10.7,0,9.2,0z M20.7,6h-8C10.8,6,9,7.2,9,9v8c0,1.8,2,3.3,4,3.3v3&#10;    c0,0.5,0.5,0.7,0.9,0.3l4-3.7h2.7c1.8,0,3.3-1.2,3.3-3V9C24,7.2,22.5,6,20.7,6z M13,9c0,0,0.6,0,1.1,0h4.8C19.3,9,20,9,20,9v0.8&#10;    c0,0-0.7,0.3-1.1,0.3h-4.8C13.7,10,13,9.7,13,9.7V9z M12.5,16.9c-0.2-0.2-0.3-0.3-0.6-0.5c1-0.8,1.8-2.1,2.2-3.4l0.7,0.3&#10;    C14.2,14.8,13.4,15.9,12.5,16.9z M17,12v4.8c0,0.7-0.2,0.8-1.2,0.8c-0.4,0-1,0-1.4-0.1c0-0.3-0.1-0.4-0.2-0.7&#10;    c0.6,0.1,0.9,0.1,1.4,0.1c0.4,0,0.4,0,0.4-0.3V12h-2.9c-0.4,0-1.1,0.1-1.1,0.1v-0.8c0,0,0.7-0.4,1.1-0.4h6.8c0.5,0,1.1,0.4,1.1,0.4&#10;    v0.8c0,0-0.6-0.1-1.1-0.1H17z M20.7,16.8c-1-1.1-1.6-1.9-2.3-3.6L19,13c0.5,1.1,0.8,1.7,1.4,2.4c0.3,0.3,0.5,0.5,0.8,0.9&#10;    C21.1,16.4,20.9,16.6,20.7,16.8z"/>
+</svg>
+
+                                    <span class="sf-toolbar-value">20</span>
+        </div>
+    </a>        <div class="sf-toolbar-info">            <div class="sf-toolbar-info-piece">
+                <b>Missing messages</b>
+                <span class="sf-toolbar-status sf-toolbar-status-">
+                    0
+                </span>
+            </div>
+
+            <div class="sf-toolbar-info-piece">
+                <b>Fallback messages</b>
+                <span class="sf-toolbar-status sf-toolbar-status-">
+                    0
+                </span>
+            </div>
+
+            <div class="sf-toolbar-info-piece">
+                <b>Defined messages</b>
+                <span class="sf-toolbar-status">20</span>
+            </div>
+        </div>
+</div>
+
+    
+                                                                                    
+    
+    
+    <div class="sf-toolbar-block sf-toolbar-block-security sf-toolbar-status-normal ">
+    <a href="/_profiler/d69a02?panel=security">        <div class="sf-toolbar-icon">        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+    <path fill="#AAAAAA" d="M21,20.4V22H3v-1.6c0-3.7,2.4-6.9,5.8-8c-1.7-1.1-2.9-3-2.9-5.2c0-3.4,2.7-6.1,6.1-6.1s6.1,2.7,6.1,6.1c0,2.2-1.2,4.1-2.9,5.2C18.6,13.5,21,16.7,21,20.4z"/>
+</svg>
+
+        <span class="sf-toolbar-value">anon.</span>
+    </div>
+    </a>        <div class="sf-toolbar-info">                                    <div class="sf-toolbar-info-piece">
+                    <b>Logged in as</b>
+                    <span>anon.</span>
+                </div>
+
+                <div class="sf-toolbar-info-piece">
+                    <b>Authenticated</b>
+                    <span class="sf-toolbar-status sf-toolbar-status-green">Yes</span>
+                </div>
+
+                <div class="sf-toolbar-info-piece">
+                    <b>Token class</b>
+                    <span><abbr title="Symfony\Component\Security\Core\Authentication\Token\AnonymousToken">AnonymousToken</abbr></span>
+                </div>
+            
+                            <div class="sf-toolbar-info-piece">
+                    <b>Firewall name</b>
+                    <span>main</span>
+                </div>
+            
+                        </div>
+</div>
+
+
+                                                                    
+    
+    <div class="sf-toolbar-block sf-toolbar-block-twig sf-toolbar-status-normal ">
+    <a href="/_profiler/d69a02?panel=twig">        <div class="sf-toolbar-icon">        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+<path fill="#AAAAAA" d="M20.1,1H3.9C2.3,1,1,2.3,1,3.9v16.3C1,21.7,2.3,23,3.9,23h16.3c1.6,0,2.9-1.3,2.9-2.9V3.9&#10;    C23,2.3,21.7,1,20.1,1z M21,20.1c0,0.5-0.4,0.9-0.9,0.9H3.9C3.4,21,3,20.6,3,20.1V3.9C3,3.4,3.4,3,3.9,3h16.3C20.6,3,21,3.4,21,3.9&#10;    V20.1z M5,5h14v3H5V5z M5,10h3v9H5V10z M10,10h9v9h-9V10z"/>
+</svg>
+
+        <span class="sf-toolbar-value">24</span>
+        <span class="sf-toolbar-label">ms</span>
+    </div>
+    </a>        <div class="sf-toolbar-info">        <div class="sf-toolbar-info-piece">
+            <b>Render Time</b>
+            <span>24 ms</span>
+        </div>
+        <div class="sf-toolbar-info-piece">
+            <b>Template Calls</b>
+            <span class="sf-toolbar-status">6</span>
+        </div>
+        <div class="sf-toolbar-info-piece">
+            <b>Block Calls</b>
+            <span class="sf-toolbar-status">72</span>
+        </div>
+        <div class="sf-toolbar-info-piece">
+            <b>Macro Calls</b>
+            <span class="sf-toolbar-status">2</span>
+        </div>
+    </div>
+</div>
+
+
+                                                                
+        
+        
+        
+        <div class="sf-toolbar-block sf-toolbar-block-db sf-toolbar-status-normal ">
+    <a href="/_profiler/d69a02?panel=db">        <div class="sf-toolbar-icon">            
+                
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+    <path fill="#AAAAAA" d="M5,8h14c1.7,0,3-1.3,3-3s-1.3-3-3-3H5C3.3,2,2,3.3,2,5S3.3,8,5,8z M18,3.6c0.8,0,1.5,0.7,1.5,1.5S18.8,6.6,18,6.6s-1.5-0.7-1.5-1.5S17.2,3.6,18,3.6z M19,9H5c-1.7,0-3,1.3-3,3s1.3,3,3,3h14c1.7,0,3-1.3,3-3S20.7,9,19,9z M18,13.6&#10;    c-0.8,0-1.5-0.7-1.5-1.5s0.7-1.5,1.5-1.5s1.5,0.7,1.5,1.5S18.8,13.6,18,13.6z M19,16H5c-1.7,0-3,1.3-3,3s1.3,3,3,3h14c1.7,0,3-1.3,3-3S20.7,16,19,16z M18,20.6c-0.8,0-1.5-0.7-1.5-1.5s0.7-1.5,1.5-1.5s1.5,0.7,1.5,1.5S18.8,20.6,18,20.6z"/>
+</svg>
+
+
+                                    <span class="sf-toolbar-value">8</span>
+                    <span class="sf-toolbar-info-piece-additional-detail">
+                        <span class="sf-toolbar-label">in</span>
+                        <span class="sf-toolbar-value">9.16</span>
+                        <span class="sf-toolbar-label">ms</span>
+                    </span>
+                
+                    </div>
+    </a>        <div class="sf-toolbar-info" style="left: 0px;">            <div class="sf-toolbar-info-piece">
+                <b>Database Queries</b>
+                <span class="sf-toolbar-status ">8</span>
+            </div>
+            <div class="sf-toolbar-info-piece">
+                <b>Query time</b>
+                <span>9.16 ms</span>
+            </div>
+            <div class="sf-toolbar-info-piece">
+                <b>Invalid entities</b>
+                <span class="sf-toolbar-status ">0</span>
+            </div>
+                            <div class="sf-toolbar-info-piece">
+                    <b>Second Level Cache</b>
+                    <span class="sf-toolbar-status">disabled</span>
+                </div>
+                    </div>
+</div>
+
+
+    
+                                                                
+    
+                                                                
+                                                                                    
+    
+    
+    <div class="sf-toolbar-block sf-toolbar-block-config sf-toolbar-status-yellow sf-toolbar-block-right" title="This Symfony version will only receive security fixes.">
+    <a href="/_profiler/d69a02?panel=config">        <div class="sf-toolbar-icon">                    <span class="sf-toolbar-label">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+<path fill="#AAAAAA" d="M12,0.9C5.8,0.9,0.9,5.8,0.9,12s5,11.1,11.1,11.1s11.1-5,11.1-11.1S18.2,0.9,12,0.9z M18.5,6.9&#10;    c-0.6,0-0.9-0.3-0.9-0.8c0-0.2,0-0.4,0.2-0.6c0.1-0.3,0.2-0.3,0.2-0.4c0-0.3-0.5-0.4-0.6-0.4c-1.8,0.1-2.3,2.5-2.7,4.4l-0.2,1&#10;    c1,0.2,1.8,0,2.2-0.3c0.6-0.4-0.2-0.7-0.1-1.2c0.1-0.3,0.5-0.5,0.7-0.6c0.5,0,0.7,0.5,0.7,0.9c0,0.7-1,1.8-3,1.8&#10;    c-0.3,0-0.5,0-0.6-0.1L13.8,13c-0.4,1.6-0.8,3.8-2.4,5.7c-1.4,1.7-2.9,1.9-3.5,1.9c-1.2,0-1.9-0.6-2-1.5c0-0.8,0.7-1.3,1.2-1.3&#10;    c0.6,0,1.1,0.5,1.1,1c0,0.5-0.2,0.6-0.4,0.6c-0.1,0.1-0.3,0.2-0.3,0.4c0,0.1,0.1,0.3,0.4,0.3c0.5,0,0.8-0.3,1.1-0.5&#10;    c1.2-0.9,1.6-2.7,2.2-5.7l0.1-0.7c0.2-1,0.5-2.1,0.7-3.2c-0.8-0.6-1.3-1.4-2.4-1.7C9,8.2,8.5,8.4,8.1,8.8c-0.4,0.5-0.2,1.1,0.2,1.5&#10;    L9,10.9c0.7,0.8,1.2,1.6,1,2.5C9.7,14.9,8,16,6,15.3c-1.8-0.6-2-1.8-1.8-2.5c0.2-0.6,0.6-0.7,1.1-0.6c0.5,0.2,0.6,0.7,0.6,1.2&#10;    c0,0.1,0,0.1-0.1,0.3c-0.2,0.1-0.3,0.3-0.3,0.4c-0.1,0.4,0.4,0.6,0.7,0.7c0.7,0.3,1.6-0.2,1.8-0.8c0.2-0.6-0.2-1-0.4-1.1l-0.7-0.8&#10;    c-0.4-0.4-1.1-1.4-0.7-2.6C6.3,9,6.6,8.6,6.9,8.2c0.9-0.6,1.8-0.7,2.8-0.6c1.2,0.4,1.8,1.1,2.6,1.8c0.5-1.2,1-2.4,1.8-3.5&#10;    C15,5,16,4.3,17.2,4.2c1.3,0.2,2.2,0.7,2.2,1.6C19.4,6.2,19.2,6.9,18.5,6.9z"/>
+</svg>
+
+            </span>
+            <span class="sf-toolbar-value">3.3.16</span>
+            </div>
+    </a>        <div class="sf-toolbar-info">        <div class="sf-toolbar-info-group">
+            
+            <div class="sf-toolbar-info-piece">
+                <b>Profiler token</b>
+                <span>
+                                            <a href="/_profiler/d69a02">d69a02</a>
+                                    </span>
+            </div>
+
+                            <div class="sf-toolbar-info-piece">
+                    <b>Kernel name</b>
+                    <span>dev</span>
+                </div>
+            
+                            <div class="sf-toolbar-info-piece">
+                    <b>Environment</b>
+                    <span>dev</span>
+                </div>
+            
+                            <div class="sf-toolbar-info-piece">
+                    <b>Debug</b>
+                    <span class="sf-toolbar-status sf-toolbar-status-green">enabled</span>
+                </div>
+                    </div>
+
+        <div class="sf-toolbar-info-group">
+            <div class="sf-toolbar-info-piece sf-toolbar-info-php">
+                <b>PHP version</b>
+                <span>
+                    7.0.25
+                      <a href="/_profiler/phpinfo">View phpinfo()</a>
+                </span>
+            </div>
+
+            <div class="sf-toolbar-info-piece sf-toolbar-info-php-ext">
+                <b>PHP Extensions</b>
+                <span class="sf-toolbar-status sf-toolbar-status-green">xdebug</span>
+                <span class="sf-toolbar-status sf-toolbar-status-green">APCu</span>
+                <span class="sf-toolbar-status sf-toolbar-status-green">OPcache</span>
+            </div>
+
+            <div class="sf-toolbar-info-piece">
+                <b>PHP SAPI</b>
+                <span>fpm-fcgi</span>
+            </div>
+        </div>
+
+        <div class="sf-toolbar-info-group">
+                            <div class="sf-toolbar-info-piece">
+                    <b>Resources</b>
+                    <span>
+                                                    <a href="https://symfony.com/doc/3.3.16/index.html" rel="help">
+                                Read Symfony 3.3.16 Docs
+                            </a>
+                                            </span>
+                </div>
+                <div class="sf-toolbar-info-piece">
+                    <b>Help</b>
+                    <span>
+                        <a href="http://symfony.com/support">
+                            Symfony Support Channels
+                        </a>
+                    </span>
+                </div>
+                    </div>
+    </div>
+</div>
+
+
+                        
+    <a class="hide-button" id="sfToolbarHideButton-d69a02" title="Close Toolbar" tabindex="-1" accesskey="D">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+<path fill="#AAAAAA" d="M21.1,18.3c0.8,0.8,0.8,2,0,2.8c-0.4,0.4-0.9,0.6-1.4,0.6s-1-0.2-1.4-0.6L12,14.8l-6.3,6.3&#10;    c-0.4,0.4-0.9,0.6-1.4,0.6s-1-0.2-1.4-0.6c-0.8-0.8-0.8-2,0-2.8L9.2,12L2.9,5.7c-0.8-0.8-0.8-2,0-2.8c0.8-0.8,2-0.8,2.8,0L12,9.2&#10;    l6.3-6.3c0.8-0.8,2-0.8,2.8,0c0.8,0.8,0.8,2,0,2.8L14.8,12L21.1,18.3z"/>
+</svg>
+
+    </a>
+</div>
+<!-- END of Symfony Web Debug Toolbar -->
+</div><script nonce="7360d27a4823888dc1865b826c59d6c6">/*&lt;![CDATA[*/        Sfjs = (function() {        "use strict";        if ('classList' in document.documentElement) {            var hasClass = function (el, cssClass) { return el.classList.contains(cssClass); };            var removeClass = function(el, cssClass) { el.classList.remove(cssClass); };            var addClass = function(el, cssClass) { el.classList.add(cssClass); };            var toggleClass = function(el, cssClass) { el.classList.toggle(cssClass); };        } else {            var hasClass = function (el, cssClass) { return el.className.match(new RegExp('\\b' + cssClass + '\\b')); };            var removeClass = function(el, cssClass) { el.className = el.className.replace(new RegExp('\\b' + cssClass + '\\b'), ' '); };            var addClass = function(el, cssClass) { if (!hasClass(el, cssClass)) { el.className += " " + cssClass; } };            var toggleClass = function(el, cssClass) { hasClass(el, cssClass) ? removeClass(el, cssClass) : addClass(el, cssClass); };        }        var noop = function() {};        var profilerStorageKey = 'sf2/profiler/';        var request = function(url, onSuccess, onError, payload, options) {            var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');            options = options || {};            options.maxTries = options.maxTries || 0;            xhr.open(options.method || 'GET', url, true);            xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');            xhr.onreadystatechange = function(state) {                if (4 !== xhr.readyState) {                    return null;                }                if (xhr.status == 404 &amp;&amp; options.maxTries &gt; 1) {                    setTimeout(function(){                        options.maxTries--;                        request(url, onSuccess, onError, payload, options);                    }, 500);                    return null;                }                if (200 === xhr.status) {                    (onSuccess || noop)(xhr);                } else {                    (onError || noop)(xhr);                }            };            xhr.send(payload || '');        };        var getPreference = function(name) {            if (!window.localStorage) {                return null;            }            return localStorage.getItem(profilerStorageKey + name);        };        var setPreference = function(name, value) {            if (!window.localStorage) {                return null;            }            localStorage.setItem(profilerStorageKey + name, value);        };        var requestStack = [];        var extractHeaders = function(xhr, stackElement) {            /* Here we avoid to call xhr.getResponseHeader in order to */            /* prevent polluting the console with CORS security errors */            var allHeaders = xhr.getAllResponseHeaders();            var ret;            if (ret = allHeaders.match(/^x-debug-token:\s+(.*)$/im)) {                stackElement.profile = ret[1];            }            if (ret = allHeaders.match(/^x-debug-token-link:\s+(.*)$/im)) {                stackElement.profilerUrl = ret[1];            }        };        var successStreak = 4;        var pendingRequests = 0;        var renderAjaxRequests = function() {            var requestCounter = document.querySelector('.sf-toolbar-ajax-request-counter');            if (!requestCounter) {                return;            }            requestCounter.textContent = requestStack.length;            var infoSpan = document.querySelector(".sf-toolbar-ajax-info");            if (infoSpan) {                infoSpan.textContent = requestStack.length + ' AJAX request' + (requestStack.length !== 1 ? 's' : '');            }            var ajaxToolbarPanel = document.querySelector('.sf-toolbar-block-ajax');            if (requestStack.length) {                ajaxToolbarPanel.style.display = 'block';            } else {                ajaxToolbarPanel.style.display = 'none';            }            if (pendingRequests &gt; 0) {                addClass(ajaxToolbarPanel, 'sf-ajax-request-loading');            } else if (successStreak &lt; 4) {                addClass(ajaxToolbarPanel, 'sf-toolbar-status-red');                removeClass(ajaxToolbarPanel, 'sf-ajax-request-loading');            } else {                removeClass(ajaxToolbarPanel, 'sf-ajax-request-loading');                removeClass(ajaxToolbarPanel, 'sf-toolbar-status-red');            }        };        var startAjaxRequest = function(index) {            var tbody = document.querySelector('.sf-toolbar-ajax-request-list');            if (!tbody) {                return;            }            var request = requestStack[index];            pendingRequests++;            var row = document.createElement('tr');            request.DOMNode = row;            var methodCell = document.createElement('td');            methodCell.textContent = request.method;            row.appendChild(methodCell);            var typeCell = document.createElement('td');            typeCell.textContent = request.type;            row.appendChild(typeCell);            var statusCodeCell = document.createElement('td');            var statusCode = document.createElement('span');            statusCode.textContent = 'n/a';            statusCodeCell.appendChild(statusCode);            row.appendChild(statusCodeCell);            var pathCell = document.createElement('td');            pathCell.className = 'sf-ajax-request-url';            if ('GET' === request.method) {                var pathLink = document.createElement('a');                pathLink.setAttribute('href', request.url);                pathLink.textContent = request.url;                pathCell.appendChild(pathLink);            } else {                pathCell.textContent = request.url;            }            pathCell.setAttribute('title', request.url);            row.appendChild(pathCell);            var durationCell = document.createElement('td');            durationCell.className = 'sf-ajax-request-duration';            durationCell.textContent = 'n/a';            row.appendChild(durationCell);            var profilerCell = document.createElement('td');            profilerCell.textContent = 'n/a';            row.appendChild(profilerCell);            row.className = 'sf-ajax-request sf-ajax-request-loading';            tbody.insertBefore(row, tbody.firstChild);            renderAjaxRequests();        };        var finishAjaxRequest = function(index) {            var request = requestStack[index];            if (!request.DOMNode) {                return;            }            pendingRequests--;            var row = request.DOMNode;            /* Unpack the children from the row */            var methodCell = row.children[0];            var statusCodeCell = row.children[2];            var statusCodeElem = statusCodeCell.children[0];            var durationCell = row.children[4];            var profilerCell = row.children[5];            if (request.error) {                row.className = 'sf-ajax-request sf-ajax-request-error';                methodCell.className = 'sf-ajax-request-error';                successStreak = 0;            } else {                row.className = 'sf-ajax-request sf-ajax-request-ok';                successStreak++;            }            if (request.statusCode) {                if (request.statusCode &lt; 300) {                    statusCodeElem.setAttribute('class', 'sf-toolbar-status');                } else if (request.statusCode &lt; 400) {                    statusCodeElem.setAttribute('class', 'sf-toolbar-status sf-toolbar-status-yellow');                } else {                    statusCodeElem.setAttribute('class', 'sf-toolbar-status sf-toolbar-status-red');                }                statusCodeElem.textContent = request.statusCode;            } else {                statusCodeElem.setAttribute('class', 'sf-toolbar-status sf-toolbar-status-red');            }            if (request.duration) {                durationCell.textContent = request.duration + 'ms';            }            if (request.profilerUrl) {                profilerCell.textContent = '';                var profilerLink = document.createElement('a');                profilerLink.setAttribute('href', request.profilerUrl);                profilerLink.textContent = request.profile;                profilerCell.appendChild(profilerLink);            }            renderAjaxRequests();        };        var addEventListener;        var el = document.createElement('div');        if (!('addEventListener' in el)) {            addEventListener = function (element, eventName, callback) {                element.attachEvent('on' + eventName, callback);            };        } else {            addEventListener = function (element, eventName, callback) {                element.addEventListener(eventName, callback, false);            };        }                    if (window.fetch &amp;&amp; window.fetch.polyfill === undefined) {                var oldFetch = window.fetch;                window.fetch = function () {                    var promise = oldFetch.apply(this, arguments);                    var url = arguments[0];                    var params = arguments[1];                    var paramType = Object.prototype.toString.call(arguments[0]);                    if (paramType === '[object Request]') {                        url = arguments[0].url;                        params = {                            method: arguments[0].method,                            credentials: arguments[0].credentials,                            headers: arguments[0].headers,                            mode: arguments[0].mode,                            redirect: arguments[0].redirect                        };                    } else {                        url = String(url);                    }                    if (!url.match(new RegExp("^\/(app(_[\\w]+)?\\.php\/)?_wdt"))) {                        var method = 'GET';                        if (params &amp;&amp; params.method !== undefined) {                            method = params.method;                        }                        var stackElement = {                            error: false,                            url: url,                            method: method,                            type: 'fetch',                            start: new Date()                        };                        var idx = requestStack.push(stackElement) - 1;                        promise.then(function (r) {                            stackElement.duration = new Date() - stackElement.start;                            stackElement.error = r.status &lt; 200 || r.status &gt;= 400;                            stackElement.statusCode = r.status;                            stackElement.profile = r.headers.get('x-debug-token');                            stackElement.profilerUrl = r.headers.get('x-debug-token-link');                            finishAjaxRequest(idx);                        }, function (e){                            stackElement.error = true;                            finishAjaxRequest(idx);                        });                        startAjaxRequest(idx);                    }                    return promise;                };            }            if (window.XMLHttpRequest &amp;&amp; XMLHttpRequest.prototype.addEventListener) {                var proxied = XMLHttpRequest.prototype.open;                XMLHttpRequest.prototype.open = function(method, url, async, user, pass) {                    var self = this;                    /* prevent logging AJAX calls to static and inline files, like templates */                    var path = url;                    if (url.substr(0, 1) === '/') {                        if (0 === url.indexOf('')) {                            path = url.substr(0);                        }                    }                    else if (0 === url.indexOf('http\x3A\x2F\x2Flocalhost\x3A8080')) {                        path = url.substr(21);                    }                    if (!path.match(new RegExp("^\/(app(_[\\w]+)?\\.php\/)?_wdt"))) {                        var stackElement = {                            error: false,                            url: url,                            method: method,                            type: 'xhr',                            start: new Date()                        };                        var idx = requestStack.push(stackElement) - 1;                        this.addEventListener('readystatechange', function() {                            if (self.readyState == 4) {                                stackElement.duration = new Date() - stackElement.start;                                stackElement.error = self.status &lt; 200 || self.status &gt;= 400;                                stackElement.statusCode = self.status;                                extractHeaders(self, stackElement);                                finishAjaxRequest(idx);                            }                        }, false);                        startAjaxRequest(idx);                    }                    proxied.apply(this, Array.prototype.slice.call(arguments));                };            }                return {            hasClass: hasClass,            removeClass: removeClass,            addClass: addClass,            toggleClass: toggleClass,            getPreference: getPreference,            setPreference: setPreference,            addEventListener: addEventListener,            request: request,            renderAjaxRequests: renderAjaxRequests,            load: function(selector, url, onSuccess, onError, options) {                var el = document.getElementById(selector);                if (el &amp;&amp; el.getAttribute('data-sfurl') !== url) {                    request(                        url,                        function(xhr) {                            el.innerHTML = xhr.responseText;                            el.setAttribute('data-sfurl', url);                            removeClass(el, 'loading');                            for (var i = 0; i &lt; requestStack.length; i++) {                                startAjaxRequest(i);                                if (requestStack[i].duration) {                                    finishAjaxRequest(i);                                }                            }                            (onSuccess || noop)(xhr, el);                        },                        function(xhr) { (onError || noop)(xhr, el); },                        '',                        options                    );                }                return this;            },            toggle: function(selector, elOn, elOff) {                var tmp = elOn.style.display,                    el = document.getElementById(selector);                elOn.style.display = elOff.style.display;                elOff.style.display = tmp;                if (el) {                    el.style.display = 'none' === tmp ? 'none' : 'block';                }                return this;            },            createTabs: function() {                var tabGroups = document.querySelectorAll('.sf-tabs');                /* create the tab navigation for each group of tabs */                for (var i = 0; i &lt; tabGroups.length; i++) {                    var tabs = tabGroups[i].querySelectorAll('.tab');                    var tabNavigation = document.createElement('ul');                    tabNavigation.className = 'tab-navigation';                    for (var j = 0; j &lt; tabs.length; j++) {                        var tabId = 'tab-' + i + '-' + j;                        var tabTitle = tabs[j].querySelector('.tab-title').innerHTML;                        var tabNavigationItem = document.createElement('li');                        tabNavigationItem.setAttribute('data-tab-id', tabId);                        if (j == 0) { addClass(tabNavigationItem, 'active'); }                        if (hasClass(tabs[j], 'disabled')) { addClass(tabNavigationItem, 'disabled'); }                        tabNavigationItem.innerHTML = tabTitle;                        tabNavigation.appendChild(tabNavigationItem);                        var tabContent = tabs[j].querySelector('.tab-content');                        tabContent.parentElement.setAttribute('id', tabId);                    }                    tabGroups[i].insertBefore(tabNavigation, tabGroups[i].firstChild);                }                /* display the active tab and add the 'click' event listeners */                for (i = 0; i &lt; tabGroups.length; i++) {                    tabNavigation = tabGroups[i].querySelectorAll('.tab-navigation li');                    for (j = 0; j &lt; tabNavigation.length; j++) {                        tabId = tabNavigation[j].getAttribute('data-tab-id');                        document.getElementById(tabId).querySelector('.tab-title').className = 'hidden';                        if (hasClass(tabNavigation[j], 'active')) {                            document.getElementById(tabId).className = 'block';                        } else {                            document.getElementById(tabId).className = 'hidden';                        }                        tabNavigation[j].addEventListener('click', function(e) {                            var activeTab = e.target || e.srcElement;                            /* needed because when the tab contains HTML contents, user can click */                            /* on any of those elements instead of their parent '&lt;li&gt;' element */                            while (activeTab.tagName.toLowerCase() !== 'li') {                                activeTab = activeTab.parentNode;                            }                            /* get the full list of tabs through the parent of the active tab element */                            var tabNavigation = activeTab.parentNode.children;                            for (var k = 0; k &lt; tabNavigation.length; k++) {                                var tabId = tabNavigation[k].getAttribute('data-tab-id');                                document.getElementById(tabId).className = 'hidden';                                removeClass(tabNavigation[k], 'active');                            }                            addClass(activeTab, 'active');                            var activeTabId = activeTab.getAttribute('data-tab-id');                            document.getElementById(activeTabId).className = 'block';                        });                    }                }            },            createToggles: function() {                var toggles = document.querySelectorAll('.sf-toggle');                for (var i = 0; i &lt; toggles.length; i++) {                    var elementSelector = toggles[i].getAttribute('data-toggle-selector');                    var element = document.querySelector(elementSelector);                    addClass(element, 'sf-toggle-content');                    if (toggles[i].hasAttribute('data-toggle-initial') &amp;&amp; toggles[i].getAttribute('data-toggle-initial') == 'display') {                        addClass(toggles[i], 'sf-toggle-on');                        addClass(element, 'sf-toggle-visible');                    } else {                        addClass(toggles[i], 'sf-toggle-off');                        addClass(element, 'sf-toggle-hidden');                    }                    addEventListener(toggles[i], 'click', function(e) {                        e.preventDefault();                        if ('' !== window.getSelection().toString()) {                            /* Don't do anything on text selection */                            return;                        }                        var toggle = e.target || e.srcElement;                        /* needed because when the toggle contains HTML contents, user can click */                        /* on any of those elements instead of their parent '.sf-toggle' element */                        while (!hasClass(toggle, 'sf-toggle')) {                            toggle = toggle.parentNode;                        }                        var element = document.querySelector(toggle.getAttribute('data-toggle-selector'));                        toggleClass(toggle, 'sf-toggle-on');                        toggleClass(toggle, 'sf-toggle-off');                        toggleClass(element, 'sf-toggle-hidden');                        toggleClass(element, 'sf-toggle-visible');                        /* the toggle doesn't change its contents when clicking on it */                        if (!toggle.hasAttribute('data-toggle-alt-content')) {                            return;                        }                        if (!toggle.hasAttribute('data-toggle-original-content')) {                            toggle.setAttribute('data-toggle-original-content', toggle.innerHTML);                        }                        var currentContent = toggle.innerHTML;                        var originalContent = toggle.getAttribute('data-toggle-original-content');                        var altContent = toggle.getAttribute('data-toggle-alt-content');                        toggle.innerHTML = currentContent !== altContent ? altContent : originalContent;                    });                }                /* Prevents from disallowing clicks on links inside toggles */                var toggleLinks = document.querySelectorAll('.sf-toggle a');                for (var i = 0; i &lt; toggleLinks.length; i++) {                    addEventListener(toggleLinks[i], 'click', function(e) {                        e.stopPropagation();                    });                }            }        };    })();    Sfjs.addEventListener(document, 'DOMContentLoaded', function() {        Sfjs.createTabs();        Sfjs.createToggles();    });/*]]&gt;*/</script><style nonce="ab264c9ac6a52cf0fa59792752a10483">    .sf-minitoolbar {    background-color: #222;    border-top-left-radius: 4px;    bottom: 0;    -webkit-box-sizing: border-box;    -moz-box-sizing: border-box;    box-sizing: border-box;    display: none;    height: 36px;    padding: 6px;    position: fixed;    right: 0;    z-index: 99999;}.sf-minitoolbar a {    display: block;}.sf-minitoolbar svg,.sf-minitoolbar img {    max-height: 24px;    max-width: 24px;    display: inline;}.sf-toolbar-clearer {    clear: both;    height: 36px;}.sf-display-none {    display: none;}.sf-toolbarreset * {    -webkit-box-sizing: content-box;    -moz-box-sizing: content-box;    box-sizing: content-box;    vertical-align: baseline;    letter-spacing: normal;    width: auto;}.sf-toolbarreset {    background-color: #222;    bottom: 0;    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);    color: #EEE;    font: 11px Arial, sans-serif;    left: 0;    margin: 0;    padding: 0 36px 0 0;    position: fixed;    right: 0;    text-align: left;    text-transform: none;    z-index: 99999;    /* neutralize the aliasing defined by external CSS styles */    -webkit-font-smoothing: subpixel-antialiased;    -moz-osx-font-smoothing: auto;}.sf-toolbarreset abbr {    border: dashed #777;    border-width: 0 0 1px;}.sf-toolbarreset svg,.sf-toolbarreset img {    height: 20px;    display: inline-block;}.sf-toolbarreset .hide-button {    background: #444;    display: block;    position: absolute;    top: 0;    right: 0;    width: 36px;    height: 36px;    cursor: pointer;    text-align: center;}.sf-toolbarreset .hide-button svg {    max-height: 18px;    margin-top: 10px;}.sf-toolbar-block {    cursor: default;    display: block;    float: left;    height: 36px;    margin-right: 0;    white-space: nowrap;}.sf-toolbar-block &gt; a,.sf-toolbar-block &gt; a:hover {    display: block;    text-decoration: none;}.sf-toolbar-block span {    display: inline-block;}.sf-toolbar-block .sf-toolbar-value {    color: #F5F5F5;    font-size: 13px;    line-height: 36px;    padding: 0;}.sf-toolbar-block .sf-toolbar-label,.sf-toolbar-block .sf-toolbar-class-separator {    color: #AAA;    font-size: 12px;}.sf-toolbar-block .sf-toolbar-info {    border-collapse: collapse;    display: table;    z-index: 100000;}.sf-toolbar-block hr {    border-top: 1px solid #777;    margin: 4px 0;    padding-top: 4px;}.sf-toolbar-block .sf-toolbar-info-piece {    /* this 'border-bottom' trick is needed because 'margin-bottom' doesn't work for table rows */    border-bottom: solid transparent 3px;    display: table-row;}.sf-toolbar-block .sf-toolbar-info-piece-additional,.sf-toolbar-block .sf-toolbar-info-piece-additional-detail {    display: none;}.sf-toolbar-block .sf-toolbar-info-group {    margin-bottom: 4px;    padding-bottom: 2px;    border-bottom: 1px solid #333333;}.sf-toolbar-block .sf-toolbar-info-group:last-child {    margin-bottom: 0;    padding-bottom: 0;    border-bottom: none;}.sf-toolbar-block .sf-toolbar-info-piece .sf-toolbar-status {    padding: 2px 5px;    margin-bottom: 0;}.sf-toolbar-block .sf-toolbar-info-piece .sf-toolbar-status + .sf-toolbar-status {    margin-left: 4px;}.sf-toolbar-block .sf-toolbar-info-piece:last-child {    margin-bottom: 0;}.sf-toolbar-block .sf-toolbar-info-piece a {    color: #99CDD8;    text-decoration: underline;}.sf-toolbar-block .sf-toolbar-info-piece a:hover {    text-decoration: none;}.sf-toolbar-block .sf-toolbar-info-piece b {    color: #AAA;    display: table-cell;    font-size: 11px;    padding: 4px 8px 4px 0;}.sf-toolbar-block:not(.sf-toolbar-block-dump) .sf-toolbar-info-piece span {    color: #F5F5F5;}.sf-toolbar-block .sf-toolbar-info-piece span {    font-size: 12px;}.sf-toolbar-block .sf-toolbar-info {    background-color: #444;    bottom: 36px;    color: #F5F5F5;    display: none;    padding: 9px 0;    position: absolute;}.sf-toolbar-block .sf-toolbar-info:empty {    visibility: hidden;}.sf-toolbar-block .sf-toolbar-status {    display: inline-block;    color: #FFF;    background-color: #666;    padding: 3px 6px;    margin-bottom: 2px;    vertical-align: middle;    min-width: 15px;    min-height: 13px;    text-align: center;}.sf-toolbar-block .sf-toolbar-status-green {    background-color: #4F805D;}.sf-toolbar-block .sf-toolbar-status-red {    background-color: #B0413E;}.sf-toolbar-block .sf-toolbar-status-yellow {    background-color: #A46A1F;}.sf-toolbar-block.sf-toolbar-status-green {    background-color: #4F805D;    color: #FFF;}.sf-toolbar-block.sf-toolbar-status-red {    background-color: #B0413E;    color: #FFF;}.sf-toolbar-block.sf-toolbar-status-yellow {    background-color: #A46A1F;    color: #FFF;}.sf-toolbar-block-request .sf-toolbar-status {    color: #FFF;    display: inline-block;    font-size: 14px;    height: 36px;    line-height: 36px;    padding: 0 10px;}.sf-toolbar-block-request .sf-toolbar-info-piece a {    text-decoration: none;}.sf-toolbar-block-request .sf-toolbar-info-piece a:hover {    text-decoration: underline;}.sf-toolbar-block-request .sf-toolbar-redirection-status {    font-weight: normal;    padding: 2px 4px;    line-height: 18px;}.sf-toolbar-block-request .sf-toolbar-info-piece span.sf-toolbar-redirection-method {    font-size: 12px;    height: 17px;    line-height: 17px;    margin-right: 5px;}.sf-toolbar-status-green .sf-toolbar-label,.sf-toolbar-status-yellow .sf-toolbar-label,.sf-toolbar-status-red .sf-toolbar-label {    color: #FFF;}.sf-toolbar-status-green svg path,.sf-toolbar-status-green svg .sf-svg-path,.sf-toolbar-status-red svg path,.sf-toolbar-status-red svg .sf-svg-path,.sf-toolbar-status-yellow svg path,.sf-toolbar-status-yellow svg .sf-svg-path {    fill: #FFF;}.sf-toolbar-block-config svg path,.sf-toolbar-block-config svg .sf-svg-path {    fill: #FFF;}.sf-toolbar-block .sf-toolbar-icon {    display: block;    height: 36px;    padding: 0 7px;}.sf-toolbar-block-request .sf-toolbar-icon {    padding-left: 0;    padding-right: 0;}.sf-toolbar-block .sf-toolbar-icon img,.sf-toolbar-block .sf-toolbar-icon svg {    border-width: 0;    position: relative;    top: 8px;}.sf-toolbar-block .sf-toolbar-icon img + span,.sf-toolbar-block .sf-toolbar-icon svg + span {    margin-left: 4px;}.sf-toolbar-block-config .sf-toolbar-icon .sf-toolbar-value {    margin-left: 4px;}.sf-toolbar-block:hover {    position: relative;}.sf-toolbar-block:hover .sf-toolbar-icon {    background-color: #444;    position: relative;    z-index: 10002;}.sf-toolbar-block:hover .sf-toolbar-info {    display: block;    padding: 10px;    max-width: 480px;    max-height: 480px;    word-wrap: break-word;    overflow: hidden;    overflow-y: auto;}.sf-toolbar-info-piece b.sf-toolbar-ajax-info {    color: #F5F5F5;}.sf-toolbar-ajax-requests {    table-layout: auto;    width: 100%;}.sf-toolbar-ajax-requests td {    background-color: #444;    border-bottom: 1px solid #777;    color: #F5F5F5;    font-size: 12px;    padding: 4px;}.sf-toolbar-ajax-requests tr:last-child td {    border-bottom: 0;}.sf-toolbar-ajax-requests th {    background-color: #222;    border-bottom: 0;    color: #AAA;    font-size: 11px;    padding: 4px;}.sf-ajax-request-url {    max-width: 250px;    line-height: 9px;    overflow: hidden;    text-overflow: ellipsis;}.sf-toolbar-ajax-requests .sf-ajax-request-url a {    text-decoration: none;}.sf-toolbar-ajax-requests .sf-ajax-request-url a:hover {    text-decoration: underline;}.sf-ajax-request-duration {    text-align: right;}.sf-ajax-request-loading {    -webkit-animation: sf-blink .5s ease-in-out infinite;    -o-animation: sf-blink .5s ease-in-out infinite;    -moz-animation: sf-blink .5s ease-in-out infinite;    animation: sf-blink .5s ease-in-out infinite;}@-webkit-keyframes sf-blink {    0% { background: #222; }    50% { background: #444; }    100% { background: #222; }}@-moz-keyframes sf-blink {    0% { background: #222; }    50% { background: #444; }    100% { background: #222; }}@keyframes sf-blink {    0% { background: #222; }    50% { background: #444; }    100% { background: #222; }}.sf-toolbar-block.sf-toolbar-block-dump .sf-toolbar-info {    max-width: none;    width: 100%;    position: fixed;    box-sizing: border-box;    left: 0;}.sf-toolbar-block-dump pre.sf-dump {    background-color: #222;    border-color: #777;    border-radius: 0;    margin: 6px 0 12px 0;}.sf-toolbar-block-dump pre.sf-dump:last-child {    margin-bottom: 0;}.sf-toolbar-block-dump pre.sf-dump .sf-dump-search-wrapper {    margin-bottom: 5px;}.sf-toolbar-block-dump pre.sf-dump span.sf-dump-search-count {    color: #333;    font-size: 12px;}.sf-toolbar-block-dump .sf-toolbar-info-piece {    display: block;}.sf-toolbar-block-dump .sf-toolbar-info-piece .sf-toolbar-file-line {    color: #AAA;    margin-left: 4px;}.sf-toolbar-block-dump .sf-toolbar-info img {    display: none;}/* Override the setting when the toolbar is on the top *//* Responsive Design */.sf-toolbar-icon .sf-toolbar-label,.sf-toolbar-icon .sf-toolbar-value {    display: none;}.sf-toolbar-block-config .sf-toolbar-icon .sf-toolbar-label {    display: inline-block;}/* Legacy Design - these styles are maintained to make old panels look   a bit better on the new toolbar */.sf-toolbar-block .sf-toolbar-info-piece-additional-detail {    color: #AAA;    font-size: 12px;}.sf-toolbar-status-green .sf-toolbar-info-piece-additional-detail,.sf-toolbar-status-yellow .sf-toolbar-info-piece-additional-detail,.sf-toolbar-status-red .sf-toolbar-info-piece-additional-detail {    color: #FFF;}@media (min-width: 768px) {    .sf-toolbar-icon .sf-toolbar-label,    .sf-toolbar-icon .sf-toolbar-value {        display: inline;    }    .sf-toolbar-block .sf-toolbar-icon img,    .sf-toolbar-block .sf-toolbar-icon svg {        top: 6px;    }    .sf-toolbar-block-time .sf-toolbar-icon svg,    .sf-toolbar-block-memory .sf-toolbar-icon svg {        display: none;    }    .sf-toolbar-block-time .sf-toolbar-icon svg + span,    .sf-toolbar-block-memory .sf-toolbar-icon svg + span {        margin-left: 0;    }    .sf-toolbar-block .sf-toolbar-icon {        padding: 0 10px;    }    .sf-toolbar-block-time .sf-toolbar-icon {        padding-right: 5px;    }    .sf-toolbar-block-memory .sf-toolbar-icon {        padding-left: 5px;    }    .sf-toolbar-block-request .sf-toolbar-icon {        padding-left: 0;        padding-right: 0;    }    .sf-toolbar-block-request .sf-toolbar-label {        margin-left: 5px;    }    .sf-toolbar-block-request .sf-toolbar-status + svg {        margin-left: 5px;    }    .sf-toolbar-block-request .sf-toolbar-icon svg + .sf-toolbar-label {        margin-left: 0;     }    .sf-toolbar-block-request .sf-toolbar-label + .sf-toolbar-value {        margin-right: 10px;    }    .sf-toolbar-block-request:hover .sf-toolbar-info {        max-width: none;    }    .sf-toolbar-block .sf-toolbar-info-piece b {        font-size: 12px;    }    .sf-toolbar-block .sf-toolbar-info-piece span {        font-size: 13px;    }    .sf-toolbar-block-right {        float: right;        margin-left: 0;        margin-right: 0;    }}@media (min-width: 1024px) {    .sf-toolbar-block .sf-toolbar-info-piece-additional,    .sf-toolbar-block .sf-toolbar-info-piece-additional-detail {        display: inline-block;    }    .sf-toolbar-block .sf-toolbar-info-piece-additional:empty,    .sf-toolbar-block .sf-toolbar-info-piece-additional-detail:empty {        display: none;    }}/***** Error Toolbar *****/.sf-error-toolbar .sf-toolbarreset {    background: #222;    color: #f5f5f5;    font: 13px/36px Arial, sans-serif;    height: 36px;    padding: 0 15px;    text-align: left;}.sf-error-toolbar .sf-toolbarreset svg {    height: auto;}.sf-error-toolbar .sf-toolbarreset a {    color: #99cdd8;    margin-left: 5px;    text-decoration: underline;}.sf-error-toolbar .sf-toolbarreset a:hover {    text-decoration: none;}.sf-error-toolbar .sf-toolbarreset .sf-toolbar-icon {    float: left;    padding: 5px 0;    margin-right: 10px;}/***** Media query print: Do not print the Toolbar. *****/@media print {    .sf-toolbar {        display: none;    }}</style><script nonce="7360d27a4823888dc1865b826c59d6c6">/*&lt;![CDATA[*/    (function () {                Sfjs.load(            'sfwdtd69a02',            '/_wdt/d69a02',            function(xhr, el) {                /* Evaluate embedded scripts inside the toolbar */                var i, scripts = [].slice.call(el.querySelectorAll('script'));                for (i = 0; i &lt; scripts.length; ++i) {                    eval(scripts[i].firstChild.nodeValue);                }                el.style.display = -1 !== xhr.responseText.indexOf('sf-toolbarreset') ? 'block' : 'none';                if (el.style.display == 'none') {                    return;                }                if (Sfjs.getPreference('toolbar/displayState') == 'none') {                    document.getElementById('sfToolbarMainContent-d69a02').style.display = 'none';                    document.getElementById('sfToolbarClearer-d69a02').style.display = 'none';                    document.getElementById('sfMiniToolbar-d69a02').style.display = 'block';                } else {                    document.getElementById('sfToolbarMainContent-d69a02').style.display = 'block';                    document.getElementById('sfToolbarClearer-d69a02').style.display = 'block';                    document.getElementById('sfMiniToolbar-d69a02').style.display = 'none';                }                /* Handle toolbar-info position */                var toolbarBlocks = [].slice.call(el.querySelectorAll('.sf-toolbar-block'));                for (i = 0; i &lt; toolbarBlocks.length; ++i) {                    toolbarBlocks[i].onmouseover = function () {                        var toolbarInfo = this.querySelectorAll('.sf-toolbar-info')[0];                        var pageWidth = document.body.clientWidth;                        var elementWidth = toolbarInfo.offsetWidth;                        var leftValue = (elementWidth + this.offsetLeft) - pageWidth;                        var rightValue = (elementWidth + (pageWidth - this.offsetLeft)) - pageWidth;                        /* Reset right and left value, useful on window resize */                        toolbarInfo.style.right = '';                        toolbarInfo.style.left = '';                        if (elementWidth &gt; pageWidth) {                            toolbarInfo.style.left = 0;                        }                        else if (leftValue &gt; 0 &amp;&amp; rightValue &gt; 0) {                            toolbarInfo.style.right = (rightValue * -1) + 'px';                        } else if (leftValue &lt; 0) {                            toolbarInfo.style.left = 0;                        } else {                            toolbarInfo.style.right = '0px';                        }                    };                }                Sfjs.addEventListener(document.getElementById('sfToolbarHideButton-d69a02'), 'click', function (event) {                    event.preventDefault();                    var p = this.parentNode;                    p.style.display = 'none';                    (p.previousElementSibling || p.previousSibling).style.display = 'none';                    document.getElementById('sfMiniToolbar-d69a02').style.display = 'block';                    Sfjs.setPreference('toolbar/displayState', 'none');                });                Sfjs.addEventListener(document.getElementById('sfToolbarMiniToggler-d69a02'), 'click', function (event) {                    event.preventDefault();                    var elem = this.parentNode;                    if (elem.style.display == 'none') {                        document.getElementById('sfToolbarMainContent-d69a02').style.display = 'none';                        document.getElementById('sfToolbarClearer-d69a02').style.display = 'none';                        elem.style.display = 'block';                    } else {                        document.getElementById('sfToolbarMainContent-d69a02').style.display = 'block';                        document.getElementById('sfToolbarClearer-d69a02').style.display = 'block';                        elem.style.display = 'none'                    }                    Sfjs.setPreference('toolbar/displayState', 'block');                });                Sfjs.renderAjaxRequests();                var dumpInfo = document.querySelector('.sf-toolbar-block-dump .sf-toolbar-info');                if (null !== dumpInfo) {                    Sfjs.addEventListener(dumpInfo, 'sfbeforedumpcollapse', function () {                        dumpInfo.style.minHeight = dumpInfo.getBoundingClientRect().height+'px';                    });                    Sfjs.addEventListener(dumpInfo, 'mouseleave', function () {                        dumpInfo.style.minHeight = '';                    });                }            },            function(xhr) {                if (xhr.status !== 0) {                    var sfwdt = document.getElementById('sfwdtd69a02');                    sfwdt.innerHTML = '\                        &lt;div class="sf-toolbarreset"&gt;\                            &lt;div class="sf-toolbar-icon"&gt;&lt;svg width="26" height="28" xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" viewBox="0 0 26 28" enable-background="new 0 0 26 28" xml:space="preserve"&gt;&lt;path fill="#FFFFFF" d="M13 0C5.8 0 0 5.8 0 13c0 7.2 5.8 13 13 13c7.2 0 13-5.8 13-13C26 5.8 20.2 0 13 0z M20 7.5 c-0.6 0-1-0.3-1-0.9c0-0.2 0-0.4 0.2-0.6c0.1-0.3 0.2-0.3 0.2-0.4c0-0.3-0.5-0.4-0.7-0.4c-2 0.1-2.5 2.7-2.9 4.8l-0.2 1.1 c1.1 0.2 1.9 0 2.4-0.3c0.6-0.4-0.2-0.8-0.1-1.3C18 9.2 18.4 9 18.7 8.9c0.5 0 0.8 0.5 0.8 1c0 0.8-1.1 2-3.3 1.9 c-0.3 0-0.5 0-0.7-0.1L15 14.1c-0.4 1.7-0.9 4.1-2.6 6.2c-1.5 1.8-3.1 2.1-3.8 2.1c-1.3 0-2.1-0.6-2.2-1.6c0-0.9 0.8-1.4 1.3-1.4 c0.7 0 1.2 0.5 1.2 1.1c0 0.5-0.2 0.6-0.4 0.7c-0.1 0.1-0.3 0.2-0.3 0.4c0 0.1 0.1 0.3 0.4 0.3c0.5 0 0.9-0.3 1.2-0.5 c1.3-1 1.7-2.9 2.4-6.2l0.1-0.8c0.2-1.1 0.5-2.3 0.8-3.5c-0.9-0.7-1.4-1.5-2.6-1.8c-0.8-0.2-1.3 0-1.7 0.4C8.4 10 8.6 10.7 9 11.1 l0.7 0.7c0.8 0.9 1.3 1.7 1.1 2.7c-0.3 1.6-2.1 2.8-4.3 2.1c-1.9-0.6-2.2-1.9-2-2.7c0.2-0.6 0.7-0.8 1.2-0.6 c0.5 0.2 0.7 0.8 0.6 1.3c0 0.1 0 0.1-0.1 0.3C6 15 5.9 15.2 5.9 15.3c-0.1 0.4 0.4 0.7 0.8 0.8c0.8 0.3 1.7-0.2 1.9-0.9 c0.2-0.6-0.2-1.1-0.4-1.2l-0.8-0.9c-0.4-0.4-1.2-1.5-0.8-2.8c0.2-0.5 0.5-1 0.9-1.4c1-0.7 2-0.8 3-0.6c1.3 0.4 1.9 1.2 2.8 1.9 c0.5-1.3 1.1-2.6 2-3.8c0.9-1 2-1.7 3.3-1.8C20 4.8 21 5.4 21 6.3C21 6.7 20.8 7.5 20 7.5z"/&gt;&lt;/svg&gt;&lt;/div&gt;\                            An error occurred while loading the web debug toolbar. &lt;a href="/_profiler/d69a02"&gt;Open the web profiler.&lt;/a&gt;\                        &lt;/div&gt;\                    ';                    sfwdt.setAttribute('class', 'sf-toolbar sf-error-toolbar');                }            },            { maxTries: 5 }        );    })();/*]]&gt;*/</script>
+
+
+</body></html>

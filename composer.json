@@ -11,7 +11,10 @@
   ],
   "autoload": {
     "psr-4": {
-      "app\\" : "app/"
+      "projects\\" : ""
     }
+  },
+  "require-dev": {
+    "codeception/codeception": "^2.4"
   }
 }

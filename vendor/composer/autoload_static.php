@@ -18,11 +18,8 @@ class ComposerStaticInitb8fd1f4a25473c48493e99432dd8f186
     public static $prefixLengthsPsr4 = array (
         'p' => 
         array (
+            'projects\\' => 9,
             'phpDocumentor\\Reflection\\' => 25,
-        ),
-        'a' => 
-        array (
-            'app\\' => 4,
         ),
         'W' => 
         array (
@@ -69,15 +66,15 @@ class ComposerStaticInitb8fd1f4a25473c48493e99432dd8f186
     );
 
     public static $prefixDirsPsr4 = array (
+        'projects\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/',
+        ),
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
-        ),
-        'app\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/app',
         ),
         'Webmozart\\Assert\\' => 
         array (

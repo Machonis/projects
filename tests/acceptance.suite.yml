@@ -4,9 +4,12 @@
 # Perform tests in browser using the WebDriver or PhpBrowser.
 # If you need both WebDriver and PHPBrowser tests - create a separate suite.
 
-actor: AcceptanceTester
+class_name: AcceptanceTester
 modules:
     enabled:
-        - PhpBrowser:
-            url: http://localhost/index5.php:8888
-        - \Helper\Acceptance
+        - WebDriver
+    config:
+        WebDriver:
+            browser: chrome
+            host: 127.0.0.1
+            url: 'https://www.google.com.ua'
