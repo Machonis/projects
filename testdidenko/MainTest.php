@@ -133,17 +133,17 @@ $arr =  [
 
     for($i=0;$i < count($arr_cells); $i++) {
         //запоминая для каждой группы ячеек нужные данные
-        $color[$arr_cells[$i]]   = $arr['color'];
-        $bgcolor[$arr_cells[$i]] = $arr['bgcolor'];
-        $text[$arr_cells[$i]]    = $arr['text'];
-        $align[$arr_cells[$i]]   = $arr['align'];
-        $valign[$arr_cells[$i]]  = $arr['valign'];
-        $colspan[$arr_cells[$i]] = 1;
-        $rowspan[$arr_cells[$i]] = 1;
+        $color[$arr_cells[$i]-1]   = $arr['color'];
+        $bgcolor[$arr_cells[$i]-1] = $arr['bgcolor'];
+        $text[$arr_cells[$i]-1]    = $arr['text'];
+        $align[$arr_cells[$i]-1]   = $arr['align'];
+        $valign[$arr_cells[$i]-1]  = $arr['valign'];
+        $colspan[$arr_cells[$i]-1] = 1;
+        $rowspan[$arr_cells[$i]-1] = 1;
 
-        if ($i == max($arr_cells)) {
-            $colspan[$arr_cells[$i]] = $count / $rowCount;;
-            $rowspan[$arr_cells[$i]] = $rowCount;
+        if ($i == min($arr_cells)) {
+            $colspan[$i-1] = $count / $rowCount;
+            $rowspan[$i-1] = $rowCount;
         }
 
     }
