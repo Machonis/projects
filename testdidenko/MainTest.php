@@ -14,7 +14,7 @@
     <?php
 $arr =  [
         'text'    => "Test1",
-        'cells'   => '2,5,8',
+        'cells'   => '1,2,3,4,5,6,8',
         'align'   => 'right',
         'valign'  => 'top',
         'color'   => 'red',
@@ -49,30 +49,28 @@ $arr =  [
     </div>
     </div>
 
-    <?php function getTable(array $arr){
-    // Создаю массив из номеров ячеек  которые ввел пользователь в массивв $arr под 
-    // ключем cells и тутже его сортирую в порядке возрастания 
-        /*for($i = 0;$i < count($arr);$i++)
-        {*/
+    <?php
+    /**
+     * @param array $arr
+     * @throws Exception
+     */
+    function getTable(array $arr) {
+
             $delimiter =',';
             $arr_cells = explode($delimiter, $arr ['cells']);
             $count = count($arr_cells);
             $rowCount = 0;
-        //}
-// КОНЕЦ Создания массива из номеров, которые ввел пользователь
-        $size =3; // Размер Таблицы = $size*$size.
-                 //МОЖНО выбирать любой размер матрицы.
 
-//Под каждый элемент создаю отдельный массив
+        $size =3;
+
         $colspan = [];
         $rowspan = [];
         $width   = [];
         $height  = [];
-        $class   = [];
         $color   = [];
         $bgcolor = [];
         $text    = [];
-//Заполняю тадлицу данными по умолчанию
+
     for($i=1; $i <= $size*$size; $i++)
     {
         $width[] = '100';
@@ -81,7 +79,7 @@ $arr =  [
         $rowspan[] = '1';
         $text[] = $i;
     }
-//Основной код программы
+
     $arrAll =[];
 
     for ($i = 1; $i <= $size*$size; $i++) {
@@ -111,12 +109,12 @@ $arr =  [
        if ($rowCount != 1) {
                    for ($i = 1; $i < $rowCount ; $i++) {
                            if (min($arrRowsCell[$i]) != min($arrRowsCell[$i+1]) - $size && max($arrRowsCell[$i]) != max($arrRowsCell[$i+1]) - $size) {
-                               echo 'Bad!';
+                               throw new Exception('These can\'t be combined!');
                            }
                            if ($i == $rowCount - 1) {
                                for ($j = 1; $j < $rowCount ; $j++) {
                                    if (count($arrRowsCell[$j]) != count($arrRowsCell[$j + 1])) {
-                                       echo 'Bad!';
+                                       throw new Exception('These can\'t be combined!');
                                    }
                                }
                            }
@@ -124,12 +122,12 @@ $arr =  [
        } else {
            for ($j = min($arr_cells); $j <= max($arr_cells); $j++) {
                if (in_array($arrAll[$j], $arr_cells) == false) {
-                   echo 'Bad!';
+                   throw new Exception('These can\'t be combined!');
                }
            }
        }
 
-       echo 'ALL right';
+    echo 'ALL right';
 
     for($i=0;$i < count($arr_cells); $i++) {
         //запоминая для каждой группы ячеек нужные данные
@@ -147,7 +145,7 @@ $arr =  [
         }
 
     }
-//КОНЕЦ Основного кода программы
+
  ?>  
     
     
@@ -162,7 +160,7 @@ $arr =  [
                         { ?>
                 <tr>
                     <?php for($j= 0;$j < $size;$j++, $iterator++){
-                        /*if (!in_array($arr_cells[$i+2], $arrAll)):*/?>
+                        if (in_array($arrAll[$iterator], $arr_cells) == false xor $arrAll[$iterator] == $arr_cells[0]):?>
                     <td colspan="<?php echo $colspan[$iterator - 1]?>"
                         rowspan="<?php echo $rowspan[$iterator - 1]?>"
                         style="
@@ -174,7 +172,7 @@ $arr =  [
                                 vertical-align: <?php echo $valign[$iterator - 1]?>;
                                 ">
                     <?php echo $text[$iterator - 1];?></td>
-                                                <?php /*endif;*/ }?>
+                                                <?php endif; }?>
                 </tr>
                 <?php }?>
             </table>
@@ -182,8 +180,12 @@ $arr =  [
     </div>
 </div>
     
-<?php }?><!--КОНЕЦ тела функции getTable-->
+<?php }?>
     
-    <?php getTable($arr); ?><!-- Вызов функции getTable($arr)-->    
+    <?php try {
+        getTable($arr);
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    }?>
 </body>
 </html>
