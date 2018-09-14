@@ -10,7 +10,7 @@ class Table
     private $rowCount;
 
     /**
-     * Table constructor.
+     * Table constructor
      * @param array $userArray
      * @param int $rowCount
      * @param int $colCount
@@ -49,32 +49,37 @@ class Table
      /**
      * Display of an unchanged table
      */
-    public function displayTable()
+    public function getUnmodifiedTable()
     {
         $iterator = 1;
-    ?>
+        $table = '
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <table class="table-first">
-                        <?php for ($i = 0; $i < $this->rowCount; $i++)
-                    {?>
-                    <tr>
-                        <?php for ($j = 0; $j < $this->colCount; $j++, $iterator++) {?>
-                            <td
-                                style="
-                                    width: 100px;
-                                    height: 100px;
-                                    text-align: center;
-                                    vertical-align: middle;
-                                ">
-                                <?php echo $iterator;?></td>
-                                <?php }?>
-                            </tr>
-                        <?php  }?>
-                    </table>
+                    <table class="table">';
+                        for ($i = 0; $i < $this->rowCount; $i++) {
+                            $table .= '<tr>';
+                            for ($j = 0; $j < $this->colCount; $j++, $iterator++) {
+                                $table .= '<td
+                                    style="
+                                        width: 100px;
+                                        height: 100px;
+                                        text-align: center;
+                                        vertical-align: middle;
+                                    ">';
+                                $table .= $iterator; $table .= '</td>';
+                            }
+                            $table .= '</tr>';
+                        }
+                        $table .= '</table>
                 </div>
             </div>
-        </div>
+        </div>';
+        return $table;
+    }
+
+    public function getModifiedTable()
+    {
+
     }
 }
