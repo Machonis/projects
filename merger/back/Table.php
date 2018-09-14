@@ -92,10 +92,11 @@ class Table
         $color = [];
         $bgcolor = [];
         $text = [];
+        $align = [];
+        $valign = [];
         $iterator = 1;
         $countOfSelectedLines = 0;
         $validatorResult = false;
-        $table = '';
 
         sort($userSelectedCells);
 
@@ -154,13 +155,14 @@ class Table
                 }
 
             }
-            $table = $this->createUserTable();
+
+            $table = $this->createUserTable($arrayOfTableCells, $userSelectedCells, $colspan, $rowspan, $width, $height, $color, $bgcolor, $text, $align, $valign);
             return $table;
         }
         return false;
     }
 
-    private function createUserTable()
+    private function createUserTable(array $arrayOfTableCells, array $userSelectedCells, array $colspan, array $rowspan, array $width, array $height, array $color, array $bgcolor, array $text, array $align, array $valign)
     {
         $table = '';
         $table .= '<div class="container" >
@@ -171,29 +173,38 @@ class Table
                     for ($i = 0; $i < $this->rowCount; $i++) {
                         $table .= '<tr >';
                             for ($j = 0; $j < $this->colCount; $j++, $iterator++) {
-                                if (in_array($arrAll[$iterator],
-                                        $arr_cells) == false xor $arrAll[$iterator] == $arr_cells[0]) {
-                                    $table .= "<td colspan = " . $colspan[$iterator - 1];
-                                        rowspan = "$rowspan[$iterator - 1]"
-                                        style = "
-                                                width: $colspan[$iterator - 1] * $width[$iterator - 1] . 'px'; ?>;
-                                                height: $rowspan[$iterator - 1] * $height[$iterator - 1] . 'px'; ?>;
-                                                background: $bgcolor[$iterator - 1];
-                                                color: $color[$iterator - 1];
-                                                text-align: $align[$iterator - 1];
-                                                vertical-align: $valign[$iterator - 1];
-                                                " >
-                                    $text[$iterator - 1]; </td >
+                                if (in_array($arrayOfTableCells[$iterator],
+                                        $userSelectedCells) == false xor $arrayOfTableCells[$iterator] == $userSelectedCells[0]) {
+                                    $table .= '<td colspan = ' . $colspan[$iterator - 1];
+                                    $table .= 'rowspan = ' . $rowspan[$iterator - 1];
+                                    $table .= ' style = "
+                                                width:"' . $colspan[$iterator - 1] * $width[$iterator - 1] . 'px';
+                                                $table .= 'height:' . $rowspan[$iterator - 1] * $height[$iterator - 1] . 'px';
+                                                $table .= 'background:' . $bgcolor[$iterator - 1];
+                                                $table .= 'color:' . $color[$iterator - 1];
+                                                $table .= 'text-align:' . $align[$iterator - 1];
+                                                $table .= 'vertical-align:' . $valign[$iterator - 1];
+                                                $table .= ' >' .
+                                    $text[$iterator - 1] . '</td >';
                                 }
                             }
-                        </tr >
+                        $table .= '</tr >';
                     }
-                </table >
+                $table .= '</table >
             </div >
         </div >
-    </div >
+    </div >';
+    return $table;
     }
 
+    /**
+     * Checking for correct merges
+     * @param int $countOfSelectedLines
+     * @param array $cellsOnEachLine
+     * @param array $userSelectedCells
+     * @param array $arrayOfTableCells
+     * @return bool
+     */
    private function userTableValidator(int $countOfSelectedLines, array $cellsOnEachLine, array $userSelectedCells, array $arrayOfTableCells)
    {
        if ($countOfSelectedLines != 1) {
