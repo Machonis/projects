@@ -12,14 +12,14 @@
 <?php
 $arr = [
     'text' => "Test1",
-    'cells' => '8,9',
+    'cells' => '14,15,19,20,24,25',
     'align' => 'center',
     'valign' => 'middle',
     'color' => 'white',
     'bgcolor' => 'blue'
 ];
 
-$size = 3;
+$size = 5;
 $iterator = 1;
 ?>
 
@@ -54,7 +54,7 @@ $iterator = 1;
  */
 function getTable(array $arr)
 {
-    $size = 3;
+    $size = 5;
     $arr_cells = [];
 
     $delimiter = ',';
@@ -96,16 +96,30 @@ function getTable(array $arr)
         }
     }
 
-    $arrRowsCell = [];
+    $arrRowsCells = [];
     $iterator = 1;
 
     for ($i = 1; $i <= $size; $i++) {
         for ($j = 1; $j <= $size; $j++) {
             if (in_array($arrAll[$iterator], $arr_cells)) {
-                $arrRowsCell[$i][] = $arrAll[$iterator];
+                $arrRowsCells[$i][] = $arrAll[$iterator];
             }
             $iterator++;
         }
+    }
+
+    $iterator = 1;
+    $iterator2 = 1;
+
+    $arrRowsCell = [];
+
+    foreach ($arrRowsCells as $key1 => $value1) {
+        foreach ($value1 as $key2 => $value2) {
+            $arrRowsCell[$iterator][$iterator2] = $arrRowsCells[$key1][$key2];
+            $iterator2++;
+        }
+        $iterator2 = 1;
+        $iterator++;
     }
 
     if ($rowCount != 1) {
