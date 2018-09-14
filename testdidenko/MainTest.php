@@ -12,14 +12,14 @@
 <?php
 $arr = [
     'text' => "Test1",
-    'cells' => '1,2,3,4,5',
+    'cells' => '8,9',
     'align' => 'center',
     'valign' => 'middle',
     'color' => 'white',
     'bgcolor' => 'blue'
 ];
 
-$size = 5;
+$size = 3;
 $iterator = 1;
 ?>
 
@@ -54,11 +54,16 @@ $iterator = 1;
  */
 function getTable(array $arr)
 {
-
-    $size = 5;
+    $size = 3;
+    $arr_cells = [];
 
     $delimiter = ',';
-    $arr_cells = explode($delimiter, $arr ['cells']);
+    $arr_cell = explode($delimiter, $arr ['cells']);
+    sort($arr_cell);
+
+    foreach ($arr_cell as $key => $value) {
+        $arr_cells[$key+1] = $arr_cell[$key];
+    }
     $count = count($arr_cells);
     $rowCount = 0;
 
@@ -71,20 +76,18 @@ function getTable(array $arr)
     $text = [];
 
     for ($i = 1; $i <= $size * $size; $i++) {
-        $width[] = '100';
-        $height[] = '100';
-        $colspan[] = '1';
-        $rowspan[] = '1';
-        $text[] = $i;
+        $width[$i] = '100';
+        $height[$i] = '100';
+        $colspan[$i] = '1';
+        $rowspan[$i] = '1';
+        $text[$i] = $i;
     }
 
     $arrAll = [];
 
     for ($i = 1; $i <= $size * $size; $i++) {
-        $arrAll[$i] = "$i";
+        $arrAll[$i] = $i;
     }
-
-    sort($arr_cells);
 
     for ($i = 1; $i <= $size; $i++) {
         if ($i - 1 <= intdiv(max($arr_cells) - min($arr_cells),
@@ -126,18 +129,20 @@ function getTable(array $arr)
         }
     }
 
-    for ($i = 0; $i < count($arr_cells); $i++) {
-        $color[$arr_cells[$i] - 1] = $arr['color'];
-        $bgcolor[$arr_cells[$i] - 1] = $arr['bgcolor'];
-        $text[$arr_cells[$i] - 1] = $arr['text'];
-        $align[$arr_cells[$i] - 1] = $arr['align'];
-        $valign[$arr_cells[$i] - 1] = $arr['valign'];
-        $colspan[$arr_cells[$i] - 1] = 1;
-        $rowspan[$arr_cells[$i] - 1] = 1;
+    foreach ($arrAll as $value) {
+        if (in_array($value, $arr_cells)) {
+            $color[$value] = $arr['color'];
+            $bgcolor[$value] = $arr['bgcolor'];
+            $text[$value] = $arr['text'];
+            $align[$value] = $arr['align'];
+            $valign[$value] = $arr['valign'];
+            $colspan[$value] = 1;
+            $rowspan[$value] = 1;
 
-        if ($i == min($arr_cells)) {
-            $colspan[$i - 1] = $count / $rowCount;
-            $rowspan[$i - 1] = $rowCount;
+            if ($value == min($arr_cells)) {
+                $colspan[$value] = $count / $rowCount;
+                $rowspan[$value] = $rowCount;
+            }
         }
 
     }
@@ -155,18 +160,18 @@ function getTable(array $arr)
                         <tr>
                             <?php for ($j = 0; $j < $size; $j++, $iterator++) {
                                 if (in_array($arrAll[$iterator],
-                                        $arr_cells) == false xor $arrAll[$iterator] == $arr_cells[0]):?>
-                                    <td colspan="<?php echo $colspan[$iterator - 1] ?>"
-                                        rowspan="<?php echo $rowspan[$iterator - 1] ?>"
+                                        $arr_cells) == false xor $arrAll[$iterator] == $arr_cells[1]):?>
+                                    <td colspan="<?php echo $colspan[$iterator] ?>"
+                                        rowspan="<?php echo $rowspan[$iterator] ?>"
                                         style="
-                                                width: <?php echo $colspan[$iterator - 1] * $width[$iterator - 1] . 'px'; ?>;
-                                                height: <?php echo $rowspan[$iterator - 1] * $height[$iterator - 1] . 'px'; ?>;
-                                                background: <?php echo $bgcolor[$iterator - 1] ?>;
-                                                color: <?php echo $color[$iterator - 1] ?>;
-                                                text-align: <?php echo $align[$iterator - 1] ?>;
-                                                vertical-align: <?php echo $valign[$iterator - 1] ?>;
+                                                width: <?php echo $colspan[$iterator] * $width[$iterator] . 'px'; ?>;
+                                                height: <?php echo $rowspan[$iterator] * $height[$iterator] . 'px'; ?>;
+                                                background: <?php echo $bgcolor[$iterator] ?>;
+                                                color: <?php echo $color[$iterator] ?>;
+                                                text-align: <?php echo $align[$iterator] ?>;
+                                                vertical-align: <?php echo $valign[$iterator] ?>;
                                                 ">
-                                        <?php echo $text[$iterator - 1]; ?></td>
+                                        <?php echo $text[$iterator]; ?></td>
                                 <?php endif;
                             } ?>
                         </tr>

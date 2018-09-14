@@ -2,6 +2,8 @@
 
 namespace projects\merger\back;
 
+use Exception;
+
 class Table
 {
 
@@ -47,7 +49,7 @@ class Table
     }
 
      /**
-     * Display of an unchanged table
+     * Return of an unchanged table
      */
     public function getUnmodifiedTable()
     {
@@ -78,6 +80,10 @@ class Table
         return $table;
     }
 
+    /**
+     * Return Changed table
+     * @return bool|string
+     */
     public function getModifiedTable()
     {
         $size = $this->rowCount * $this->colCount;
@@ -162,6 +168,21 @@ class Table
         return false;
     }
 
+    /**
+     * Create changed table
+     * @param array $arrayOfTableCells
+     * @param array $userSelectedCells
+     * @param array $colspan
+     * @param array $rowspan
+     * @param array $width
+     * @param array $height
+     * @param array $color
+     * @param array $bgcolor
+     * @param array $text
+     * @param array $align
+     * @param array $valign
+     * @return string
+     */
     private function createUserTable(array $arrayOfTableCells, array $userSelectedCells, array $colspan, array $rowspan, array $width, array $height, array $color, array $bgcolor, array $text, array $align, array $valign)
     {
         $table = '';
@@ -175,16 +196,16 @@ class Table
                             for ($j = 0; $j < $this->colCount; $j++, $iterator++) {
                                 if (in_array($arrayOfTableCells[$iterator],
                                         $userSelectedCells) == false xor $arrayOfTableCells[$iterator] == $userSelectedCells[0]) {
-                                    $table .= '<td colspan = ' . $colspan[$iterator - 1];
+                                    $table .= '<td colspan = ' . $colspan[$iterator - 1] . ' ';
                                     $table .= 'rowspan = ' . $rowspan[$iterator - 1];
-                                    $table .= ' style = "
-                                                width:"' . $colspan[$iterator - 1] * $width[$iterator - 1] . 'px';
-                                                $table .= 'height:' . $rowspan[$iterator - 1] * $height[$iterator - 1] . 'px';
-                                                $table .= 'background:' . $bgcolor[$iterator - 1];
-                                                $table .= 'color:' . $color[$iterator - 1];
-                                                $table .= 'text-align:' . $align[$iterator - 1];
-                                                $table .= 'vertical-align:' . $valign[$iterator - 1];
-                                                $table .= ' >' .
+                                    $table .= ' style = " '. PHP_EOL;
+                                        $table .= 'width: ' . $colspan[$iterator - 1] * $width[$iterator - 1] . 'px ; '. PHP_EOL;
+                                        $table .= 'height: ' . $rowspan[$iterator - 1] * $height[$iterator - 1] . 'px ; '. PHP_EOL;
+                                        $table .= 'background: ' . $bgcolor[$iterator - 1] . '; '. PHP_EOL;
+                                        $table .= 'color: ' . $color[$iterator - 1]. '; ';
+                                        $table .= 'text-align: ' . $align[$iterator - 1]. '; '. PHP_EOL;
+                                        $table .= 'vertical-align: ' . $valign[$iterator - 1]. '; '. PHP_EOL;
+                                    $table .= '">' .
                                     $text[$iterator - 1] . '</td >';
                                 }
                             }
@@ -204,6 +225,7 @@ class Table
      * @param array $userSelectedCells
      * @param array $arrayOfTableCells
      * @return bool
+     * @throws Exception
      */
    private function userTableValidator(int $countOfSelectedLines, array $cellsOnEachLine, array $userSelectedCells, array $arrayOfTableCells)
    {

@@ -17,8 +17,8 @@ use projects\merger\back\Table;
 
 <?php
 $arr = [
-    'text' => "Test1",
-    'cells' => '1,2,3,4,5',
+    'text' => 'Test1',
+    'cells' => '8,9',
     'align' => 'center',
     'valign' => 'middle',
     'color' => 'white',
