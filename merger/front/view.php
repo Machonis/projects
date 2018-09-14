@@ -30,11 +30,8 @@ $row = 5;
 
 $table = new Table($arr,$col,$row);
 echo $table->getUnmodifiedTable();
-try {
-    echo $table->getModifiedTable();
-} catch (Exception $e) {
-    echo $e->getMessage();
-}
+echo $table->getModifiedTable();
 ?>
 
 </body>
+</html>
