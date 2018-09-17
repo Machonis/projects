@@ -100,11 +100,18 @@ class Table
         $text = [];
         $align = [];
         $valign = [];
+        $tmp = [];
         $iterator = 1;
         $countOfSelectedLines = 0;
         $validatorResult = false;
 
         sort($userSelectedCells);
+
+        foreach ($userSelectedCells as $key => $value) {
+            $tmp[$key+1] = $userSelectedCells[$key];
+        }
+
+        $userSelectedCells = $tmp;
 
         for ($i = 1; $i <= $size; $i++) {
             $width[] = '100';
@@ -145,15 +152,19 @@ class Table
 
         $minUserSelectedCells = min($userSelectedCells);
 
+        foreach ($arrAll as $value) {
+        if (in_array($value, $arr_cells)) {
+            $color[$value] = $arr['color'];
         if ($validatorResult == true) {
-            for ($i = 0; $i < $countOfSelectedCells; $i++) {
-                $color[$userSelectedCells[$i] - 1] = $this->userArray['color'];
-                $bgcolor[$userSelectedCells[$i] - 1] = $this->userArray['bgcolor'];
-                $text[$userSelectedCells[$i] - 1] = $this->userArray['text'];
-                $align[$userSelectedCells[$i] - 1] = $this->userArray['align'];
-                $valign[$userSelectedCells[$i] - 1] = $this->userArray['valign'];
-                $colspan[$userSelectedCells[$i] - 1] = 1;
-                $rowspan[$userSelectedCells[$i] - 1] = 1;
+            foreach ($arrayOfTableCells as $value) {
+                if (in_array($value, $arr_cells)) {
+                $color[$userSelectedCells[$value]] = $this->userArray['color'];
+                $bgcolor[$userSelectedCells[$value]] = $this->userArray['bgcolor'];
+                $text[$userSelectedCells[$value]] = $this->userArray['text'];
+                $align[$userSelectedCells[$value]] = $this->userArray['align'];
+                $valign[$userSelectedCells[$value]] = $this->userArray['valign'];
+                $colspan[$userSelectedCells[$value]] = 1;
+                $rowspan[$userSelectedCells[$value]] = 1;
 
                 if ($i == $minUserSelectedCells) {
                     $colspan[$i - 1] = $countOfSelectedCells / $countOfSelectedLines;
