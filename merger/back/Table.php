@@ -10,6 +10,7 @@ class Table
     private $userArray;
     private $colCount;
     private $rowCount;
+    private $size;
 
     /**
      * Table constructor
@@ -22,6 +23,7 @@ class Table
         $this->setRowCount($rowCount);
         $this->setColCount($colCount);
         $this->setUserArray($userArray);
+        $this->setSize();
     }
 
     /**
@@ -48,6 +50,31 @@ class Table
         $this->rowCount = $rowCount;
     }
 
+    /**
+     * Set count of cells
+     */
+    private function setSize()
+    {
+        $this->size = $this->rowCount*$this->colCount;
+    }
+
+    /**
+     * @return array
+     */
+    private function getUserSelectedCells()
+    {
+        $tmp = [];
+        $userSelectedCells = explode(',', $this->userArray['cells']);
+        sort($userSelectedCells);
+
+        foreach ($userSelectedCells as $key => $value) {
+            $tmp[$key+1] = $userSelectedCells[$key];
+        }
+        $userSelectedCells = $tmp;
+
+        return $userSelectedCells;
+    }
+
      /**
      * Return of an unchanged table
      */
@@ -55,17 +82,15 @@ class Table
     {
         $iterator = 1;
         $table = '
-        <div class="container">
-            <div class="row">
-                <div class="col">
+        <div id ="unmodified_table">
                     <table class="table">';
                         for ($i = 0; $i < $this->rowCount; $i++) {
                             $table .= '<tr>';
                             for ($j = 0; $j < $this->colCount; $j++, $iterator++) {
                                 $table .= '<td
                                     style="
-                                        width: 100px;
-                                        height: 100px;
+                                        width:' . 100 / $this->colCount . '%;
+                                        height:' . 100 / $this->rowCount . '%;
                                         text-align: center;
                                         vertical-align: middle;
                                     ">';
@@ -74,23 +99,74 @@ class Table
                             $table .= '</tr>';
                         }
                         $table .= '</table>
-                </div>
-            </div>
         </div>';
+
         return $table;
     }
 
-    /**
-     * Return Changed table
-     * @return bool|string
-     */
+    private function getArrayOfTableCells()
+    {
+        $arrayOfTableCells = [];
+
+        for ($i = 1; $i <= $this->size; $i++) {
+            $arrayOfTableCells[$i] = $i;
+        }
+        return $arrayOfTableCells;
+    }
+
+    private function getCountOfSelectedRows()
+    {
+        $countOfSelectedRows = [];
+        $userSelectedCells = $this->getUserSelectedCells();
+        $maxOfSelectedCells = max($userSelectedCells);
+        $minOfSelectedCells = min($userSelectedCells);
+
+        for ($i = 1; $i <= $this->rowCount; $i++) {
+            if ($i - 1 <= intdiv($maxOfSelectedCells - $minOfSelectedCells, $this->rowCount) &&
+                intdiv($maxOfSelectedCells - $minOfSelectedCells, $this->rowCount) <= $i) {
+                $countOfSelectedRows = $i;
+            }
+        }
+        return $countOfSelectedRows;
+    }
+
+    private function getCellsOnEachRow()
+    {
+        $arrayOfTableCells = $this->getArrayOfTableCells();
+        $userSelectedCells = $this->getUserSelectedCells();
+        $cellsOnEachRow = [];
+        $iterator = 1;
+        $tmp = [];
+        for ($i = 1; $i <= $this->rowCount; $i++) {
+            for ($j = 1; $j <= $this->colCount; $j++) {
+                if (in_array($arrayOfTableCells[$iterator], $userSelectedCells)) {
+                    $tmp[$i][] = $arrayOfTableCells[$iterator];
+                }
+                $iterator++;
+            }
+        }
+
+        $i = 1;
+        $j = 1;
+
+        foreach ($tmp as $key1 => $value1) {
+            foreach ($value1 as $key2 => $value2) {
+                $cellsOnEachRow[$i][$j] = $tmp[$key1][$key2];
+                $j++;
+            }
+            $j = 1;
+            $i++;
+        }
+        return $cellsOnEachRow;
+    }
+
     public function getModifiedTable()
     {
-        $size = $this->rowCount * $this->colCount;
-        $delimiter = ',';
-        $userSelectedCells = explode($delimiter, $this->userArray['cells']);
+        $countOfSelectedRows = $this->getCountOfSelectedRows();
+        $userSelectedCells = $this->getUserSelectedCells();
         $countOfSelectedCells = count($userSelectedCells);
-        $arrayOfTableCells = [];
+        $arrayOfTableCells = $this->getArrayOfTableCells();
+        $validatorResult = false;
         $colspan = [];
         $rowspan = [];
         $width = [];
@@ -100,154 +176,99 @@ class Table
         $text = [];
         $align = [];
         $valign = [];
-        $tmp = [];
-        $iterator = 1;
-        $countOfSelectedLines = 0;
-        $validatorResult = false;
 
-        sort($userSelectedCells);
-
-        foreach ($userSelectedCells as $key => $value) {
-            $tmp[$key+1] = $userSelectedCells[$key];
-        }
-
-        $userSelectedCells = $tmp;
-
-        for ($i = 1; $i <= $size; $i++) {
-            $width[] = '100';
-            $height[] = '100';
-            $colspan[] = '1';
-            $rowspan[] = '1';
-            $text[] = $i;
-        }
-
-        for ($i = 1; $i <= $size; $i++) {
-            $arrayOfTableCells[$i] = "$i";
-        }
-
-        $maxOfSelectedCells = max($userSelectedCells);
-        $minOfSelectedCells = min($userSelectedCells);
-
-        for ($i = 1; $i <= $this->rowCount; $i++) {
-            if ($i - 1 <= intdiv($maxOfSelectedCells - $minOfSelectedCells, $this->rowCount) && intdiv($maxOfSelectedCells - $minOfSelectedCells, $this->rowCount) <= $i) {
-                $countOfSelectedLines = $i;
-            }
-        }
-        $cellsOnEachLine = [];
-
-        for ($i = 1; $i <= $this->rowCount; $i++) {
-            for ($j = 1; $j <= $this->colCount; $j++) {
-                if (in_array($arrayOfTableCells[$iterator], $userSelectedCells)) {
-                    $cellsOnEachLine[$i][] = $arrayOfTableCells[$iterator];
-                }
-                $iterator++;
-            }
+        for ($i = 1; $i <= $this->size; $i++) {
+            $width[$i] = 100 / $this->colCount;
+            $height[$i] = 100 / $this->rowCount;
+            $colspan[$i] = '1';
+            $rowspan[$i] = '1';
+            $text[$i] = $i;
+            $align[$i] = 'center';
         }
 
         try {
-            $validatorResult = $this->userTableValidator($countOfSelectedLines, $cellsOnEachLine, $userSelectedCells, $arrayOfTableCells);
+            $validatorResult = $this->userTableValidator();
         } catch (Exception $e) {
             echo $e->getMessage();
         }
 
         $minUserSelectedCells = min($userSelectedCells);
 
-        foreach ($arrAll as $value) {
-        if (in_array($value, $arr_cells)) {
-            $color[$value] = $arr['color'];
         if ($validatorResult == true) {
             foreach ($arrayOfTableCells as $value) {
-                if (in_array($value, $arr_cells)) {
-                $color[$userSelectedCells[$value]] = $this->userArray['color'];
-                $bgcolor[$userSelectedCells[$value]] = $this->userArray['bgcolor'];
-                $text[$userSelectedCells[$value]] = $this->userArray['text'];
-                $align[$userSelectedCells[$value]] = $this->userArray['align'];
-                $valign[$userSelectedCells[$value]] = $this->userArray['valign'];
-                $colspan[$userSelectedCells[$value]] = 1;
-                $rowspan[$userSelectedCells[$value]] = 1;
+                if (in_array($value, $userSelectedCells)) {
+                    $color[$value] = $this->userArray['color'];
+                    $bgcolor[$value] = $this->userArray['bgcolor'];
+                    $text[$value] = $this->userArray['text'];
+                    $align[$value] = $this->userArray['align'];
+                    $valign[$value] = $this->userArray['valign'];
+                    $colspan[$value] = 1;
+                    $rowspan[$value] = 1;
 
-                if ($i == $minUserSelectedCells) {
-                    $colspan[$i - 1] = $countOfSelectedCells / $countOfSelectedLines;
-                    $rowspan[$i - 1] = $countOfSelectedLines;
+                    if ($value == $minUserSelectedCells) {
+                        $colspan[$value] = $countOfSelectedCells / $countOfSelectedRows;
+                        $rowspan[$value] = $countOfSelectedRows;
+                    }
+
                 }
-
             }
-
-            $table = $this->createUserTable($arrayOfTableCells, $userSelectedCells, $colspan, $rowspan, $width, $height, $color, $bgcolor, $text, $align, $valign);
-            return $table;
+                $table = $this->createUserTable($arrayOfTableCells, $userSelectedCells, $colspan, $rowspan, $width,
+                    $height, $color, $bgcolor, $text, $align, $valign);
+                return $table;
         }
         return false;
     }
 
-    /**
-     * Create changed table
-     * @param array $arrayOfTableCells
-     * @param array $userSelectedCells
-     * @param array $colspan
-     * @param array $rowspan
-     * @param array $width
-     * @param array $height
-     * @param array $color
-     * @param array $bgcolor
-     * @param array $text
-     * @param array $align
-     * @param array $valign
-     * @return string
-     */
     private function createUserTable(array $arrayOfTableCells, array $userSelectedCells, array $colspan, array $rowspan, array $width, array $height, array $color, array $bgcolor, array $text, array $align, array $valign)
     {
         $table = '';
-        $table .= '<div class="container" >
-        <div class="row" >
-            <div class="col" >
+        $table .= '<div id ="modified_table" >
                 <table class="table" >';
                     $iterator = 1;
                     for ($i = 0; $i < $this->rowCount; $i++) {
                         $table .= '<tr >';
                             for ($j = 0; $j < $this->colCount; $j++, $iterator++) {
                                 if (in_array($arrayOfTableCells[$iterator],
-                                        $userSelectedCells) == false xor $arrayOfTableCells[$iterator] == $userSelectedCells[0]) {
-                                    $table .= '<td colspan = ' . $colspan[$iterator - 1] . ' ';
-                                    $table .= 'rowspan = ' . $rowspan[$iterator - 1];
+                                        $userSelectedCells) == false xor $arrayOfTableCells[$iterator] == $userSelectedCells[1]) {
+                                    $table .= '<td colspan = ' . $colspan[$iterator] . ' ';
+                                    $table .= 'rowspan = ' . $rowspan[$iterator];
                                     $table .= ' style = " '. PHP_EOL;
-                                        $table .= 'width: ' . $colspan[$iterator - 1] * $width[$iterator - 1] . 'px ; '. PHP_EOL;
-                                        $table .= 'height: ' . $rowspan[$iterator - 1] * $height[$iterator - 1] . 'px ; '. PHP_EOL;
-                                        $table .= 'background: ' . $bgcolor[$iterator - 1] . '; '. PHP_EOL;
-                                        $table .= 'color: ' . $color[$iterator - 1]. '; ';
-                                        $table .= 'text-align: ' . $align[$iterator - 1]. '; '. PHP_EOL;
-                                        $table .= 'vertical-align: ' . $valign[$iterator - 1]. '; '. PHP_EOL;
+                                        $table .= 'width: ' . $colspan[$iterator] * $width[$iterator] . '% ; '. PHP_EOL;
+                                        $table .= 'height: ' . $rowspan[$iterator] * $height[$iterator] . '% ; '. PHP_EOL;
+                                        $table .= 'background: ' . $bgcolor[$iterator] . '; '. PHP_EOL;
+                                        $table .= 'color: ' . $color[$iterator]. '; ' . PHP_EOL;
+                                        $table .= 'text-align: ' . $align[$iterator]. '; '. PHP_EOL;
+                                        $table .= 'vertical-align: ' . $valign[$iterator]. '; '. PHP_EOL;
                                     $table .= '">' .
-                                    $text[$iterator - 1] . '</td >';
+                                    $text[$iterator] . '</td >';
                                 }
                             }
                         $table .= '</tr >';
                     }
                 $table .= '</table >
-            </div >
-        </div >
     </div >';
     return $table;
     }
 
     /**
-     * Checking for correct merges
-     * @param int $countOfSelectedLines
-     * @param array $cellsOnEachLine
-     * @param array $userSelectedCells
-     * @param array $arrayOfTableCells
+     * Check the possibility of merging cells
      * @return bool
      * @throws Exception
      */
-   private function userTableValidator(int $countOfSelectedLines, array $cellsOnEachLine, array $userSelectedCells, array $arrayOfTableCells)
+   private function userTableValidator()
    {
-       if ($countOfSelectedLines != 1) {
-           for ($i = 1; $i < $countOfSelectedLines; $i++) {
-               if (min($cellsOnEachLine[$i]) != min($cellsOnEachLine[$i + 1]) - $this->colCount && max($cellsOnEachLine[$i]) != max($cellsOnEachLine[$i + 1]) - $this->colCount) {
+       $cellsOnEachRow = $this->getCellsOnEachRow();
+       $countOfSelectedRows = $this->getCountOfSelectedRows();
+       $userSelectedCells = $this->getUserSelectedCells();
+       $arrayOfTableCells = $this->getArrayOfTableCells();
+       if ($countOfSelectedRows != 1) {
+           for ($i = 1; $i < $countOfSelectedRows; $i++) {
+               if (min($cellsOnEachRow[$i]) != min($cellsOnEachRow[$i + 1]) - $this->colCount && max($cellsOnEachRow[$i]) != max($cellsOnEachRow[$i + 1]) - $this->colCount) {
                    throw new Exception('These can\'t be combined!');
                }
-               if ($i == $countOfSelectedLines - 1) {
-                   for ($j = 1; $j < $countOfSelectedLines; $j++) {
-                       if (count($cellsOnEachLine[$j]) != count($cellsOnEachLine[$j + 1])) {
+               if ($i == $countOfSelectedRows - 1) {
+                   for ($j = 1; $j < $countOfSelectedRows; $j++) {
+                       if (count($cellsOnEachRow[$j]) != count($cellsOnEachRow[$j + 1])) {
                            throw new Exception('These can\'t be combined!');
                        }
                    }

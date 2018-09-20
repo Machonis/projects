@@ -25,7 +25,7 @@ $arr = [
     'bgcolor' => 'blue'
 ];
 
-$col = 5;
+$col = 10;
 $row = 5;
 
 $table = new Table($arr,$col,$row);
