@@ -28,10 +28,18 @@ $arr = [
 $col = 10;
 $row = 5;
 
-$table = new Table($arr,$col,$row);
-echo $table->getUnmodifiedTable();
-echo $table->getModifiedTable();
-?>
-
+$table = new Table($arr,$col,$row);?>
+<div class="container">
+    <div>
+        <h1>Unmodified table</h1>
+    </div>
+    <?php echo $table->getUnmodifiedTable();?>
+</div>
+<div class="container">
+    <div>
+        <h1>Modified table</h1>
+    </div>
+    <?php echo $table->getModifiedTable();?>
+</div>
 </body>
 </html>

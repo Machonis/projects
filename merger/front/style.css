@@ -7,18 +7,23 @@ td, th {
     outline-offset: -5px;
     outline: 5px outset #9FC1F0;
     font-style: oblique;
+    font-size: 80%;
+}
+
+div.container {
+    width: 100%;
+    height: 40%;
+    margin-bottom: 5%;
 }
 
 div#modified_table {
     width: 100%;
-    height: 40%;
-    margin-bottom: 5%;
+    height: 90%;
 }
 
 div#unmodified_table {
     width: 100%;
-    height: 40%;
-    margin-bottom: 5%;
+    height: 90%;
 }
 
 body {

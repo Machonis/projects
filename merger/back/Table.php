@@ -59,6 +59,7 @@ class Table
     }
 
     /**
+     * return array of cells witch user want to merge
      * @return array
      */
     private function getUserSelectedCells()
@@ -76,7 +77,7 @@ class Table
     }
 
      /**
-     * Return of an unchanged table
+     * return an unchanged table
      */
     public function getUnmodifiedTable()
     {
@@ -104,6 +105,10 @@ class Table
         return $table;
     }
 
+    /**
+     * return array of all cells
+     * @return array
+     */
     private function getArrayOfTableCells()
     {
         $arrayOfTableCells = [];
@@ -114,6 +119,10 @@ class Table
         return $arrayOfTableCells;
     }
 
+    /**
+     * return how many rows were selected
+     * @return array|int
+     */
     private function getCountOfSelectedRows()
     {
         $countOfSelectedRows = [];
@@ -130,6 +139,10 @@ class Table
         return $countOfSelectedRows;
     }
 
+    /**
+     * separate selected cells by rows
+     * @return array
+     */
     private function getCellsOnEachRow()
     {
         $arrayOfTableCells = $this->getArrayOfTableCells();
@@ -160,6 +173,10 @@ class Table
         return $cellsOnEachRow;
     }
 
+    /**
+     * return modified table
+     * @return bool|string
+     */
     public function getModifiedTable()
     {
         $countOfSelectedRows = $this->getCountOfSelectedRows();
@@ -167,23 +184,25 @@ class Table
         $countOfSelectedCells = count($userSelectedCells);
         $arrayOfTableCells = $this->getArrayOfTableCells();
         $validatorResult = false;
-        $colspan = [];
-        $rowspan = [];
-        $width = [];
-        $height = [];
-        $color = [];
-        $bgcolor = [];
-        $text = [];
-        $align = [];
-        $valign = [];
+        $options = [
+            'colspan' => [],
+            'rowspan' => [],
+            'width' => [],
+            'height' => [],
+            'color' => [],
+            'bgcolor' => [],
+            'text' => [],
+            'align' => [],
+            'valign' => [],
+        ];
 
         for ($i = 1; $i <= $this->size; $i++) {
-            $width[$i] = 100 / $this->colCount;
-            $height[$i] = 100 / $this->rowCount;
-            $colspan[$i] = '1';
-            $rowspan[$i] = '1';
-            $text[$i] = $i;
-            $align[$i] = 'center';
+            $options['width'][$i] = 100 / $this->colCount;
+            $options['height'][$i] = 100 / $this->rowCount;
+            $options['colspan'][$i] = '1';
+            $options['rowspan'][$i] = '1';
+            $options['text'][$i] = $i;
+            $options['align'][$i] = 'center';
         }
 
         try {
@@ -197,30 +216,36 @@ class Table
         if ($validatorResult == true) {
             foreach ($arrayOfTableCells as $value) {
                 if (in_array($value, $userSelectedCells)) {
-                    $color[$value] = $this->userArray['color'];
-                    $bgcolor[$value] = $this->userArray['bgcolor'];
-                    $text[$value] = $this->userArray['text'];
-                    $align[$value] = $this->userArray['align'];
-                    $valign[$value] = $this->userArray['valign'];
-                    $colspan[$value] = 1;
-                    $rowspan[$value] = 1;
+                    $options['color'][$value] = $this->userArray['color'];
+                    $options['bgcolor'][$value] = $this->userArray['bgcolor'];
+                    $options['text'][$value] = $this->userArray['text'];
+                    $options['align'][$value] = $this->userArray['align'];
+                    $options['valign'][$value] = $this->userArray['valign'];
+                    $options['colspan'][$value] = 1;
+                    $options['rowspan'][$value] = 1;
 
                     if ($value == $minUserSelectedCells) {
-                        $colspan[$value] = $countOfSelectedCells / $countOfSelectedRows;
-                        $rowspan[$value] = $countOfSelectedRows;
+                        $options['colspan'][$value] = $countOfSelectedCells / $countOfSelectedRows;
+                        $options['rowspan'][$value] = $countOfSelectedRows;
                     }
 
                 }
             }
-                $table = $this->createUserTable($arrayOfTableCells, $userSelectedCells, $colspan, $rowspan, $width,
-                    $height, $color, $bgcolor, $text, $align, $valign);
+                $table = $this->createUserTable($options);
                 return $table;
         }
         return false;
     }
 
-    private function createUserTable(array $arrayOfTableCells, array $userSelectedCells, array $colspan, array $rowspan, array $width, array $height, array $color, array $bgcolor, array $text, array $align, array $valign)
+    /**
+     * create modified table
+     * @param array $options
+     * @return string
+     */
+    private function createUserTable(array $options)
     {
+        $arrayOfTableCells = $this->getArrayOfTableCells();
+        $userSelectedCells = $this->getUserSelectedCells();
         $table = '';
         $table .= '<div id ="modified_table" >
                 <table class="table" >';
@@ -230,17 +255,17 @@ class Table
                             for ($j = 0; $j < $this->colCount; $j++, $iterator++) {
                                 if (in_array($arrayOfTableCells[$iterator],
                                         $userSelectedCells) == false xor $arrayOfTableCells[$iterator] == $userSelectedCells[1]) {
-                                    $table .= '<td colspan = ' . $colspan[$iterator] . ' ';
-                                    $table .= 'rowspan = ' . $rowspan[$iterator];
+                                    $table .= '<td colspan = ' . $options['colspan'][$iterator] . ' ';
+                                    $table .= 'rowspan = ' . $options['rowspan'][$iterator];
                                     $table .= ' style = " '. PHP_EOL;
-                                        $table .= 'width: ' . $colspan[$iterator] * $width[$iterator] . '% ; '. PHP_EOL;
-                                        $table .= 'height: ' . $rowspan[$iterator] * $height[$iterator] . '% ; '. PHP_EOL;
-                                        $table .= 'background: ' . $bgcolor[$iterator] . '; '. PHP_EOL;
-                                        $table .= 'color: ' . $color[$iterator]. '; ' . PHP_EOL;
-                                        $table .= 'text-align: ' . $align[$iterator]. '; '. PHP_EOL;
-                                        $table .= 'vertical-align: ' . $valign[$iterator]. '; '. PHP_EOL;
+                                        $table .= 'width: ' . $options['colspan'][$iterator] * $options['width'][$iterator] . '% ; '. PHP_EOL;
+                                        $table .= 'height: ' . $options['rowspan'][$iterator] * $options['height'][$iterator] . '% ; '. PHP_EOL;
+                                        $table .= 'background: ' . $options['bgcolor'][$iterator] . '; '. PHP_EOL;
+                                        $table .= 'color: ' . $options['color'][$iterator]. '; ' . PHP_EOL;
+                                        $table .= 'text-align: ' . $options['align'][$iterator]. '; '. PHP_EOL;
+                                        $table .= 'vertical-align: ' . $options['valign'][$iterator]. '; '. PHP_EOL;
                                     $table .= '">' .
-                                    $text[$iterator] . '</td >';
+                                        $options['text'][$iterator] . '</td >';
                                 }
                             }
                         $table .= '</tr >';
