@@ -64,15 +64,14 @@ class Table
      */
     private function getUserSelectedCells()
     {
-        $tmp = [];
-        $userSelectedCells = explode(',', $this->userArray['cells']);
-        sort($userSelectedCells);
+        $count = count($this->userArray);
+        $userSelectedCells = [];
 
-        foreach ($userSelectedCells as $key => $value) {
-            $tmp[$key+1] = $userSelectedCells[$key];
+        for ($i = 0; $i < $count; $i++)
+        {
+            $userSelectedCells[$i] = explode(',', $this->userArray[$i]['cells']);
+            sort($userSelectedCells[$i]);
         }
-        $userSelectedCells = $tmp;
-
         return $userSelectedCells;
     }
 
@@ -113,7 +112,7 @@ class Table
     {
         $arrayOfTableCells = [];
 
-        for ($i = 1; $i <= $this->size; $i++) {
+        for ($i = 0; $i <= $this->size; $i++) {
             $arrayOfTableCells[$i] = $i;
         }
         return $arrayOfTableCells;
@@ -126,14 +125,18 @@ class Table
     private function getCountOfSelectedRows()
     {
         $countOfSelectedRows = [];
+        $count = count($this->userArray);
         $userSelectedCells = $this->getUserSelectedCells();
-        $maxOfSelectedCells = max($userSelectedCells);
-        $minOfSelectedCells = min($userSelectedCells);
 
-        for ($i = 1; $i <= $this->rowCount; $i++) {
-            if ($i - 1 <= intdiv($maxOfSelectedCells - $minOfSelectedCells, $this->rowCount) &&
-                intdiv($maxOfSelectedCells - $minOfSelectedCells, $this->rowCount) <= $i) {
-                $countOfSelectedRows = $i;
+        for ($i = 0; $i < $count; $i++) {
+            $maxOfSelectedCells = max($userSelectedCells[$i]);
+            $minOfSelectedCells = min($userSelectedCells[$i]);
+
+            for ($j = 0; $j <= $this->rowCount; $j++) {
+                if ($j - 1 <= intdiv($maxOfSelectedCells - $minOfSelectedCells, $this->rowCount) &&
+                    intdiv($maxOfSelectedCells - $minOfSelectedCells, $this->rowCount) <= $j) {
+                    $countOfSelectedRows[$i] = $j;
+                }
             }
         }
         return $countOfSelectedRows;
@@ -145,30 +148,34 @@ class Table
      */
     private function getCellsOnEachRow()
     {
+        $count = count($this->userArray);
         $arrayOfTableCells = $this->getArrayOfTableCells();
         $userSelectedCells = $this->getUserSelectedCells();
         $cellsOnEachRow = [];
-        $iterator = 1;
-        $tmp = [];
-        for ($i = 1; $i <= $this->rowCount; $i++) {
-            for ($j = 1; $j <= $this->colCount; $j++) {
-                if (in_array($arrayOfTableCells[$iterator], $userSelectedCells)) {
-                    $tmp[$i][] = $arrayOfTableCells[$iterator];
+
+        for ($k = 0; $k < $count; $k++) {
+            $tmp = [];
+            $iterator = 0;
+            for ($i = 0; $i < $this->rowCount; $i++) {
+                for ($j = 0; $j < $this->colCount; $j++) {
+                    if (in_array($arrayOfTableCells[$iterator], $userSelectedCells[$k])) {
+                        $tmp[$i][] = $arrayOfTableCells[$iterator];
+                    }
+                    $iterator++;
                 }
-                $iterator++;
             }
-        }
 
-        $i = 1;
-        $j = 1;
+            $i = 0;
+            $j = 0;
 
-        foreach ($tmp as $key1 => $value1) {
-            foreach ($value1 as $key2 => $value2) {
-                $cellsOnEachRow[$i][$j] = $tmp[$key1][$key2];
-                $j++;
+            foreach ($tmp as $key1 => $value1) {
+                foreach ($value1 as $key2 => $value2) {
+                    $cellsOnEachRow[$k][$i][$j] = $tmp[$key1][$key2];
+                    $j++;
+                }
+                $j = 1;
+                $i++;
             }
-            $j = 1;
-            $i++;
         }
         return $cellsOnEachRow;
     }
@@ -282,27 +289,30 @@ class Table
      */
    private function userTableValidator()
    {
-       $cellsOnEachRow = $this->getCellsOnEachRow();
+       $count = count($this->userArray);
        $countOfSelectedRows = $this->getCountOfSelectedRows();
+       $cellsOnEachRow = $this->getCellsOnEachRow();
        $userSelectedCells = $this->getUserSelectedCells();
        $arrayOfTableCells = $this->getArrayOfTableCells();
-       if ($countOfSelectedRows != 1) {
-           for ($i = 1; $i < $countOfSelectedRows; $i++) {
-               if (min($cellsOnEachRow[$i]) != min($cellsOnEachRow[$i + 1]) - $this->colCount && max($cellsOnEachRow[$i]) != max($cellsOnEachRow[$i + 1]) - $this->colCount) {
-                   throw new Exception('These can\'t be combined!');
-               }
-               if ($i == $countOfSelectedRows - 1) {
-                   for ($j = 1; $j < $countOfSelectedRows; $j++) {
-                       if (count($cellsOnEachRow[$j]) != count($cellsOnEachRow[$j + 1])) {
-                           throw new Exception('These can\'t be combined!');
+       for ($i = 0; $i < $count; $i++) {
+           if ($countOfSelectedRows[$i] != 1) {
+               for ($j = 0; $j < $countOfSelectedRows - 1; $j++) {
+                   if (min($cellsOnEachRow[$i][$j]) != min($cellsOnEachRow[$i][$j + 1]) - $this->colCount && max($cellsOnEachRow[$j]) != max($cellsOnEachRow[$j + 1]) - $this->colCount) {
+                       throw new Exception('These can\'t be combined!');
+                   }
+                   if ($i == $countOfSelectedRows - 1) {
+                       for ($j = 0; $j < $countOfSelectedRows -1; $j++) {
+                           if (count($cellsOnEachRow[$j]) != count($cellsOnEachRow[$j + 1])) {
+                               throw new Exception('These can\'t be combined!');
+                           }
                        }
                    }
                }
-           }
-       } else {
-           for ($j = min($userSelectedCells); $j <= max($userSelectedCells); $j++) {
-               if (in_array($arrayOfTableCells[$j], $userSelectedCells) == false) {
-                   throw new Exception('These can\'t be combined!');
+           } else {
+               for ($j = min($userSelectedCells); $j <= max($userSelectedCells); $j++) {
+                   if (in_array($arrayOfTableCells[$j], $userSelectedCells) == false) {
+                       throw new Exception('These can\'t be combined!');
+                   }
                }
            }
        }

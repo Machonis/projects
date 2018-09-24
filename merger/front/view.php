@@ -17,16 +17,36 @@ use projects\merger\back\Table;
 
 <?php
 $arr = [
-    'text' => 'Test1',
-    'cells' => '8,9',
-    'align' => 'center',
-    'valign' => 'middle',
-    'color' => 'white',
-    'bgcolor' => 'blue'
+    [
+        'text' => 'Test1',
+        'cells' => '2,3,5,6',
+        'align' => 'center',
+        'valign' => 'middle',
+        'color' => 'white',
+        'bgcolor' => 'blue'
+    ],
+
+    [
+        'text' => 'Test2',
+        'cells' => '1,4',
+        'align' => 'center',
+        'valign' => 'middle',
+        'color' => 'white',
+        'bgcolor' => 'blue'
+    ],
+
+    [
+        'text' => 'Test2',
+        'cells' => '8,9',
+        'align' => 'center',
+        'valign' => 'middle',
+        'color' => 'white',
+        'bgcolor' => 'blue'
+    ],
 ];
 
-$col = 10;
-$row = 5;
+$col = 3;
+$row = 3;
 
 $table = new Table($arr,$col,$row);?>
 <div class="container">
