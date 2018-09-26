@@ -11,9 +11,13 @@ class Table
     private $colCount;
     private $rowCount;
     private $size;
+    private $userSelectedCells;
+    private $arrayOfTableCells;
+    private $countOfSelectedRows;
+    private $cellsOnEachRow;
 
     /**
-     * Table constructor
+     * table constructor
      * @param array $userArray
      * @param int $rowCount
      * @param int $colCount
@@ -24,6 +28,10 @@ class Table
         $this->setColCount($colCount);
         $this->setUserArray($userArray);
         $this->setSize();
+        $this->setuserSelectedCells();
+        $this->setarrayOfTableCells();
+        $this->setCountOfSelectedRows();
+        $this->setCellsOnEachRow();
     }
 
     /**
@@ -51,7 +59,7 @@ class Table
     }
 
     /**
-     * Set count of cells
+     * set count of cells
      */
     private function setSize()
     {
@@ -59,10 +67,9 @@ class Table
     }
 
     /**
-     * return array of cells witch user want to merge
-     * @return array
+     * set array of cells witch user want to merge
      */
-    private function getUserSelectedCells()
+    private function setUserSelectedCells()
     {
         $count = count($this->userArray);
         $userSelectedCells = [];
@@ -72,7 +79,7 @@ class Table
             $userSelectedCells[$i] = explode(',', $this->userArray[$i]['cells']);
             sort($userSelectedCells[$i]);
         }
-        return $userSelectedCells;
+        $this->userSelectedCells = $userSelectedCells;
     }
 
      /**
@@ -105,28 +112,26 @@ class Table
     }
 
     /**
-     * return array of all cells
-     * @return array
+     * set array of all cells
      */
-    private function getArrayOfTableCells()
+    private function setArrayOfTableCells()
     {
         $arrayOfTableCells = [];
 
-        for ($i = 0; $i <= $this->size; $i++) {
+        for ($i = 1; $i <= $this->size; $i++) {
             $arrayOfTableCells[$i] = $i;
         }
-        return $arrayOfTableCells;
+        $this->arrayOfTableCells = $arrayOfTableCells;
     }
 
     /**
-     * return how many rows were selected
-     * @return array|int
+     * set how many rows were selected
      */
-    private function getCountOfSelectedRows()
+    private function setCountOfSelectedRows()
     {
         $countOfSelectedRows = [];
         $count = count($this->userArray);
-        $userSelectedCells = $this->getUserSelectedCells();
+        $userSelectedCells = $this->userSelectedCells;
 
         for ($i = 0; $i < $count; $i++) {
             $maxOfSelectedCells = max($userSelectedCells[$i]);
@@ -139,18 +144,17 @@ class Table
                 }
             }
         }
-        return $countOfSelectedRows;
+        $this->countOfSelectedRows = $countOfSelectedRows;
     }
 
     /**
-     * separate selected cells by rows
-     * @return array
+     * set separate selected cells by rows
      */
-    private function getCellsOnEachRow()
+    private function setCellsOnEachRow()
     {
         $count = count($this->userArray);
-        $arrayOfTableCells = $this->getArrayOfTableCells();
-        $userSelectedCells = $this->getUserSelectedCells();
+        $arrayOfTableCells = $this->arrayOfTableCells;
+        $userSelectedCells = $this->userSelectedCells;
         $cellsOnEachRow = [];
 
         for ($k = 0; $k < $count; $k++) {
@@ -158,8 +162,8 @@ class Table
             $iterator = 0;
             for ($i = 0; $i < $this->rowCount; $i++) {
                 for ($j = 0; $j < $this->colCount; $j++) {
-                    if (in_array($arrayOfTableCells[$iterator], $userSelectedCells[$k])) {
-                        $tmp[$i][] = $arrayOfTableCells[$iterator];
+                    if (in_array($arrayOfTableCells[$iterator]+1, $userSelectedCells[$k])) {
+                        $tmp[$i][] = $arrayOfTableCells[$iterator]+1;
                     }
                     $iterator++;
                 }
@@ -177,7 +181,7 @@ class Table
                 $i++;
             }
         }
-        return $cellsOnEachRow;
+        $this->cellsOnEachRow = $cellsOnEachRow;
     }
 
     /**
@@ -186,10 +190,10 @@ class Table
      */
     public function getModifiedTable()
     {
-        $countOfSelectedRows = $this->getCountOfSelectedRows();
-        $userSelectedCells = $this->getUserSelectedCells();
+        $countOfSelectedRows = $this->countOfSelectedRows;
+        $userSelectedCells = $this->userSelectedCells;
         $countOfSelectedCells = count($userSelectedCells);
-        $arrayOfTableCells = $this->getArrayOfTableCells();
+        $arrayOfTableCells = $this->arrayOfTableCells;
         $validatorResult = false;
         $options = [
             'colspan' => [],
@@ -251,8 +255,8 @@ class Table
      */
     private function createUserTable(array $options)
     {
-        $arrayOfTableCells = $this->getArrayOfTableCells();
-        $userSelectedCells = $this->getUserSelectedCells();
+        $arrayOfTableCells = $this->arrayOfTableCells;
+        $userSelectedCells = $this->userSelectedCells;
         $table = '';
         $table .= '<div id ="modified_table" >
                 <table class="table" >';
@@ -289,33 +293,38 @@ class Table
      */
    private function userTableValidator()
    {
-       $count = count($this->userArray);
-       $countOfSelectedRows = $this->getCountOfSelectedRows();
-       $cellsOnEachRow = $this->getCellsOnEachRow();
-       $userSelectedCells = $this->getUserSelectedCells();
-       $arrayOfTableCells = $this->getArrayOfTableCells();
-       for ($i = 0; $i < $count; $i++) {
-           if ($countOfSelectedRows[$i] != 1) {
-               for ($j = 0; $j < $countOfSelectedRows - 1; $j++) {
-                   if (min($cellsOnEachRow[$i][$j]) != min($cellsOnEachRow[$i][$j + 1]) - $this->colCount && max($cellsOnEachRow[$j]) != max($cellsOnEachRow[$j + 1]) - $this->colCount) {
-                       throw new Exception('These can\'t be combined!');
+       $countOfMerges = count($this->userArray);
+       $countOfSelectedRows = $this->countOfSelectedRows;
+       $cellsOnEachRow = $this->cellsOnEachRow;
+       $userSelectedCells = $this->userSelectedCells;
+       $arrayOfTableCells = $this->arrayOfTableCells;
+           for ($i = 0; $i < $countOfMerges; $i++) {
+               for ($i = 0; $i < $countOfSelectedRows; $i++) {
+               $countOfUserSelectedCells = count($userSelectedCells[$i]);
+               if ($countOfSelectedRows[$i] != 1) {
+                   for ($j = 0; $j < $countOfSelectedRows[$i] - 1; $j++) {
+                       if (min($cellsOnEachRow[$i][$j]) != min($cellsOnEachRow[$i][$j + 1]) - $this->colCount && max($cellsOnEachRow[$i][$j]) != max($cellsOnEachRow[$i][$j + 1]) - $this->colCount) {
+                           throw new Exception('These can\'t be combined!');
+                       }
+                       if ($i == $countOfSelectedRows[$i] - 1) {
+                           for ($j = 0; $j < $countOfSelectedRows[$i] - 1; $j++) {
+                               if (count($cellsOnEachRow[$i][$j]) != count($cellsOnEachRow[$i][$j + 1])) {
+                                   throw new Exception('These can\'t be combined!');
+                               }
+                           }
+                       }
                    }
-                   if ($i == $countOfSelectedRows - 1) {
-                       for ($j = 0; $j < $countOfSelectedRows -1; $j++) {
-                           if (count($cellsOnEachRow[$j]) != count($cellsOnEachRow[$j + 1])) {
+               } else {
+                   $a = $countOfUserSelectedCells[$i];
+                   for ($k = 0; $k < $countOfUserSelectedCells[$i]; $k++) {
+                       for ($j = min($userSelectedCells[$i]); $j <= max($userSelectedCells[$i]); $j++) {
+                           if (in_array($arrayOfTableCells[$j], $userSelectedCells[$i]) == false) {
                                throw new Exception('These can\'t be combined!');
                            }
                        }
                    }
                }
-           } else {
-               for ($j = min($userSelectedCells); $j <= max($userSelectedCells); $j++) {
-                   if (in_array($arrayOfTableCells[$j], $userSelectedCells) == false) {
-                       throw new Exception('These can\'t be combined!');
-                   }
-               }
            }
-       }
        return true;
    }
 }

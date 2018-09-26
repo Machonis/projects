@@ -16,7 +16,7 @@ use projects\merger\back\Table;
 <body>
 
 <?php
-$arr = [
+$userArray = [
     [
         'text' => 'Test1',
         'cells' => '2,3,5,6',
@@ -45,10 +45,10 @@ $arr = [
     ],
 ];
 
-$col = 3;
-$row = 3;
+$colCount = 3;
+$rowCount = 3;
 
-$table = new Table($arr,$col,$row);?>
+$table = new Table($userArray,$colCount,$rowCount);?>
 <div class="container">
     <div>
         <h1>Unmodified table</h1>
