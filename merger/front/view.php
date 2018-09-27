@@ -19,7 +19,7 @@ use projects\merger\back\Table;
 $userArray = [
     [
         'text' => 'Test1',
-        'cells' => '2,3,5,6',
+        'cells' => '1,11',
         'align' => 'center',
         'valign' => 'middle',
         'color' => 'white',
@@ -28,7 +28,7 @@ $userArray = [
 
     [
         'text' => 'Test2',
-        'cells' => '1,4',
+        'cells' => '12,13',
         'align' => 'center',
         'valign' => 'middle',
         'color' => 'white',
@@ -36,8 +36,17 @@ $userArray = [
     ],
 
     [
-        'text' => 'Test2',
-        'cells' => '8,9',
+        'text' => 'Test3',
+        'cells' => '21,31',
+        'align' => 'center',
+        'valign' => 'middle',
+        'color' => 'white',
+        'bgcolor' => 'blue'
+    ],
+
+    [
+        'text' => 'Test4',
+        'cells' => '38,39,48,49',
         'align' => 'center',
         'valign' => 'middle',
         'color' => 'white',
@@ -45,8 +54,8 @@ $userArray = [
     ],
 ];
 
-$colCount = 3;
-$rowCount = 3;
+$colCount = 5;
+$rowCount = 10;
 
 $table = new Table($userArray,$colCount,$rowCount);?>
 <div class="container">

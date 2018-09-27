@@ -137,9 +137,9 @@ class Table
             $maxOfSelectedCells = max($userSelectedCells[$i]);
             $minOfSelectedCells = min($userSelectedCells[$i]);
 
-            for ($j = 0; $j <= $this->rowCount; $j++) {
-                if ($j - 1 <= intdiv($maxOfSelectedCells - $minOfSelectedCells, $this->rowCount) &&
-                    intdiv($maxOfSelectedCells - $minOfSelectedCells, $this->rowCount) <= $j) {
+            for ($j = 1; $j <= $this->rowCount; $j++) {
+                if ($j-1 <= intdiv($maxOfSelectedCells - $minOfSelectedCells, $this->colCount) &&
+                    intdiv($maxOfSelectedCells - $minOfSelectedCells, $this->colCount) <= $j) {
                     $countOfSelectedRows[$i] = $j;
                 }
             }
@@ -185,8 +185,7 @@ class Table
     }
 
     /**
-     * return modified table
-     * @return bool|string
+     * @return string
      */
     public function getModifiedTable()
     {
@@ -195,8 +194,9 @@ class Table
         $userSelectedCells = $this->userSelectedCells;
         $arrayOfTableCells = $this->arrayOfTableCells;
         $cellsOnEachRow = $this->cellsOnEachRow;
+        $userSelectedCellsInOneArray = [];
         $firstCellsOnEachRow = [];
-        $validatorResult = false;
+        $validator = true;
         $options = [
             'colspan' => [],
             'rowspan' => [],
@@ -214,60 +214,63 @@ class Table
             $options['height'][$i] = 100 / $this->rowCount;
             $options['colspan'][$i] = '1';
             $options['rowspan'][$i] = '1';
-            $options['text'][$i] = $i;
+            $options['text'][$i] = $i + 1;
             $options['align'][$i] = 'center';
         }
 
         try {
-            $validatorResult = $this->userTableValidator();
+            $this->userTableValidator();
+            $this->checkForoverlappingRequests();
         } catch (Exception $e) {
             echo $e->getMessage();
+            $validator = false;
         }
 
-        $countArraysOfCellsOnEachRow = count($cellsOnEachRow);
-        for ($i = 0; $i < $countArraysOfCellsOnEachRow; $i++) {
-                    $firstCellsOnEachRow[] = min($cellsOnEachRow[$i][0]);
-        }
-
-        if ($validatorResult == true) {
-        for ($i = 0; $i < $count; $i++) {
-
-            $minUserSelectedCells = min($userSelectedCells[$i]);
-            $countOfSelectedCells = count($userSelectedCells[$i]);
-
+        if ($validator) {
+            $countArraysOfCellsOnEachRow = count($cellsOnEachRow);
+            for ($i = 0; $i < $countArraysOfCellsOnEachRow; $i++) {
+                $firstCellsOnEachRow[] = min($cellsOnEachRow[$i][0]);
+            }
+            for ($i = 0; $i < count($userSelectedCells); $i++) {
+                for ($j = 0; $j < count($userSelectedCells[$i]); $j++) {
+                    $userSelectedCellsInOneArray[] = $userSelectedCells[$i][$j];
+                }
+            }
+            for ($i = 0; $i < $count; $i++) {
+                $minUserSelectedCells = min($userSelectedCells[$i]);
+                $countOfSelectedCells = count($userSelectedCells[$i]);
                 foreach ($arrayOfTableCells as $value) {
                     if (in_array($value, $userSelectedCells[$i])) {
-                        $options['color'][$value-1] = $this->userArray[$i]['color'];
-                        $options['bgcolor'][$value-1] = $this->userArray[$i]['bgcolor'];
-                        $options['text'][$value-1] = $this->userArray[$i]['text'];
-                        $options['align'][$value-1] = $this->userArray[$i]['align'];
-                        $options['valign'][$value-1] = $this->userArray[$i]['valign'];
-                        $options['colspan'][$value-1] = 1;
-                        $options['rowspan'][$value-1] = 1;
+                        $options['color'][$value - 1] = $this->userArray[$i]['color'];
+                        $options['bgcolor'][$value - 1] = $this->userArray[$i]['bgcolor'];
+                        $options['text'][$value - 1] = $this->userArray[$i]['text'];
+                        $options['align'][$value - 1] = $this->userArray[$i]['align'];
+                        $options['valign'][$value - 1] = $this->userArray[$i]['valign'];
+                        $options['colspan'][$value - 1] = 1;
+                        $options['rowspan'][$value - 1] = 1;
 
                         if ($value == $minUserSelectedCells) {
-                            $options['colspan'][$value] = $countOfSelectedCells / $countOfSelectedRows[$i];
-                            $options['rowspan'][$value] = $countOfSelectedRows[$i];
+                            $options['colspan'][$value - 1] = $countOfSelectedCells / $countOfSelectedRows[$i];
+                            $options['rowspan'][$value - 1] = $countOfSelectedRows[$i];
                         }
-
                     }
                 }
             }
-            $table = $this->createUserTable($options, $firstCellsOnEachRow);
+            $table = $this->createUserTable($options, $firstCellsOnEachRow, $userSelectedCellsInOneArray);
             return $table;
         }
-        return false;
+        return null;
     }
 
     /**
      * @param array $options
      * @param array $firstCellsOnEachRow
+     * @param array $userSelectedCellsInOneArray
      * @return string
      */
-    private function createUserTable(array $options,array $firstCellsOnEachRow)
+    private function createUserTable(array $options, array $firstCellsOnEachRow, array $userSelectedCellsInOneArray)
     {
         $arrayOfTableCells = $this->arrayOfTableCells;
-        $userSelectedCells = $this->userSelectedCells;
         $table = '';
         $table .= '<div id ="modified_table" >
                 <table class="table" >';
@@ -276,8 +279,8 @@ class Table
                         $table .= '<tr >';
                             for ($j = 0; $j < $this->colCount; $j++, $iterator++) {
                                 if (in_array($arrayOfTableCells[$iterator+1],
-                                        $userSelectedCells) == false xor in_array($arrayOfTableCells[$iterator], $firstCellsOnEachRow)) {
-                                    $table .= '<td colspan = ' . $options['colspan'][$iterator] . ' '; $a=$options['colspan'][$iterator];
+                                        $userSelectedCellsInOneArray) == false || in_array($arrayOfTableCells[$iterator+1], $firstCellsOnEachRow)) {
+                                    $table .= '<td colspan = ' . $options['colspan'][$iterator] . ' ';
                                     $table .= 'rowspan = ' . $options['rowspan'][$iterator];
                                     $table .= ' style = " '. PHP_EOL;
                                         $table .= 'width: ' . $options['colspan'][$iterator] * $options['width'][$iterator] . '% ; '. PHP_EOL;
@@ -332,5 +335,22 @@ class Table
            }
        }
        return true;
+   }
+
+    /**
+     * @throws Exception
+     */
+   public function checkForOverlappingRequests()
+   {
+       $countOfMerges = count($this->userArray);
+        for ($i = 0; $i < $countOfMerges; $i++) {
+            for ($j = 0; $j < $countOfMerges; $j++) {
+                $countOfMergeElements = count(array_unique(array_merge($this->userSelectedCells[$i], $this->userSelectedCells[$j])));
+                $countOfBoth = count($this->userSelectedCells[$i]) + count($this->userSelectedCells[$j]);
+                if ($i != $j && $countOfMergeElements != $countOfBoth) {
+                    throw new Exception('These Overlapping requests!');
+                }
+            }
+        }
    }
 }
